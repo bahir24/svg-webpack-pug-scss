@@ -1,0 +1,67 @@
+.catalog-list{
+}
+
+.catalog-list__item{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+
+.catalog-list__item label{
+    padding: 1.875rem 1rem;
+    margin: 0 1rem;
+    display: block;
+    border-bottom: 1px solid #CFCFCF;
+}
+.catalog-list__item.active{
+    background-color: #003469;
+    color: #fff;
+}
+
+.catalog-list__item.active label{
+    border-bottom: none;
+}
+
+.pricelist__content{
+    display: flex;
+}
+
+.pricelist__left,
+.pricelist__right{
+    width: 50%;
+}
+
+.prices{
+    background-color: #003469;
+    padding: 2.5rem;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.pricelist__right{
+    color: #fff;
+}
+
+.prices__list{
+    border-bottom: 1px solid #FFFFFF;
+    padding: 2.5rem 0;
+    width: 100%;
+}
+
+.prices__item{
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.prices__item-price::after{
+    content: ' руб';
+}
+
+.prices__price--from::before{
+    content: 'от ';
+}
+

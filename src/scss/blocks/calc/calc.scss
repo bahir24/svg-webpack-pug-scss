@@ -83,6 +83,10 @@
     color: #fff;
 }
 
+.calc-dropdown__item label{
+    text-transform: capitalize;
+}
+
 .calc-result{
     padding: 2.5rem 0;
 }

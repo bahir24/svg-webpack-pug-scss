@@ -1,2 +1,25 @@
-mixin radio($name, $block="")
-input(type="radio" name='#{block} #{name}' value='#{name}' id='#{name}' class="radio-hidden")
+mixin radio(name, section)
+    - var combine = name + '-' + section;
+    - var identify = section + '-' + name;
+    input(type="radio" name=combine value=name id=identify).radio-hidden
+
+
+mixin icon(name)
+    svg(class=attributes.class)
+        use(xlink:href=`img/main-sprite.svg#${name}`)
+
+mixin dropdown-item(name, section)
+    - var combine = name + '-' + section;
+    - var identify = section + '-' + name;
+    li(class=attributes.class).calc-dropdown__item
+        label(for=name)= name
+        +radio(name, section)
+
+mixin filter-category(name, section, head)
+    - var combine = name + '-' + section;
+    - var identify = section + '-' + name;
+    li.calc-filter__tabs-item
+        +radio(name, section)
+        label.tab-label(for=name)
+            span head
+            .toggle
