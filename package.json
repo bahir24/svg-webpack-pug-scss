@@ -4,9 +4,9 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "prod": "rm -rf dist && webpack --mode production --progress",
+    "prod": "rm -rf dist && cross-env NODE_ENV=production webpack --mode production --progress",
     "dev": "rm -rf dist && cross-env NODE_ENV=development webpack --progress",
-    "watch": "webpack-dev-server"
+    "watch": "cross-env NODE_ENV=watch webpack-dev-server"
   },
   "keywords": [],
   "author": "",

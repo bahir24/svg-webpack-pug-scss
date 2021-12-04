@@ -1,0 +1,8 @@
+@mixin font($typeMix, $filenameMix, $weightMix, $styleMix) {
+    @font-face {
+        font-family: 'Hyundai' + $typeMix;
+        src: url('./fonts/' + $filenameMix) format('woff');
+        font-weight: $weightMix;
+        font-style: $styleMix;
+    }
+}

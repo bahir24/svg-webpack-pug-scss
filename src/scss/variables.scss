@@ -1,0 +1,34 @@
+$color-hyundai-blue:#003469;
+$offset-small:1rem;
+$offset-normal:2rem;
+$offset-over:2.5rem;
+$white:#fff;
+$border-grey:1px solid #AAAAAA;
+
+$most-big-screen:1480px;
+$extra-large-screen:1280px;
+$large-screen:1032px;
+$middle-screen:848px;
+$small-screen:656px;
+
+$container: (
+    (656px, 100%),
+    (848px, 800px),
+    (1032px, 1040px),
+    (1280px, 1220px),
+    (1480px, 1400px)
+);
+
+$fonts: (
+    ("Head", "HyundaiSansHeadOffice-Light.woff", 300, normal),
+    ("Head", "HyundaiSansHeadOffice-Regular.woff", 400, normal),
+    ("Head", "HyundaiSansHeadOffice-Medium.woff", 500, normal),
+    ("Head", "HyundaiSansHeadOffice-Bold.woff", 700, normal),
+
+    ("Text", "HyundaiSansTextOffice-Regular.woff", 400, normal),
+    ("Text", "HyundaiSansTextOffice-Italic.woff", 400, italic),
+    ("Text", "HyundaiSansTextOffice-Medium.woff", 500, normal),
+    ("Text", "HyundaiSansTextOffice-MediumItalic.woff", 500, italic),
+    ("Text", "HyundaiSansTextOffice-Bold.woff", 700, normal),
+    ("Text", "HyundaiSansTextOffice-BoldItalic.woff", 700, italic),
+);

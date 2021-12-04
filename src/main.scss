@@ -1,1 +1,7 @@
-@import 'scss/normalize.scss'
+@import 'scss/mixins.scss';
+@import 'scss/variables.scss';
+@import 'scss/fonts.scss';
+@import 'scss/normalize.scss';
+@import 'scss/layout/container.scss';
+@import 'scss/blocks/header/header.scss';
+@import 'scss/blocks/calc/calc.scss';

@@ -1,0 +1,173 @@
+.calc {
+    padding: 3.75rem 0;
+}
+
+.calc-tab-input:checked + .reglament-tab{
+    display: block;
+}
+
+.calc input[type="radio"] {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.calc__tabs {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #AAAAAA;
+    display: flex;
+}
+
+.calc__tabs .active{
+    color: #003469;
+}
+
+.calc__tabs-item {
+    font-size: 2.5rem;
+    color: #DBDBDB;
+    font-weight: 500;
+    margin-right: 2.5rem;
+}
+
+.calc-filter {
+    display: flex;
+}
+
+.calc-filter__right,
+.calc-filter__left {
+    width: 50%;
+}
+
+.calc-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s;
+}
+
+.calc-filter__tabs-item {
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.calc-filter__tabs-item label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 1rem;
+}
+
+.calc-filter__tabs-item .toggle {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #000;
+    transform: rotate(45deg);
+    border-right: transparent;
+    border-bottom: transparent;
+    transition: transform .3s;
+}
+
+.calc-filter__tabs-item input[type="radio"]:checked~ .tab-label {
+    background-color: #E8E8E8;
+}
+
+.calc-filter__tabs-item input[type="radio"]:checked~ .tab-label .toggle {
+    transform: rotate(225deg);
+}
+
+.calc-filter__tabs-item input[type="radio"]:checked~ .calc-dropdown {
+    max-height: 50rem;
+}
+
+.calc-dropdown__item:hover {
+    background-color: #003469;
+    color: #fff;
+}
+
+.calc-result{
+    padding: 2.5rem 0;
+}
+
+.calc-result__head{
+    display: block;
+    margin-bottom: .6rem;
+    font-size: 1.25rem;
+}
+
+.calc-result__price{
+    margin-bottom: .6rem;
+    font-size: 2.5rem;
+}
+
+.calc-result__price::after{
+    content: 'руб';
+}
+
+.pricelist__head{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+.catalog-list__item{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+
+.catalog-list__item label{
+    padding: 1.875rem 1rem;
+    margin: 0 1rem;
+    display: block;
+    border-bottom: 1px solid #CFCFCF;
+}
+.catalog-list__item.active{
+    background-color: #003469;
+    color: #fff;
+}
+
+.catalog-list__item.active label{
+    border-bottom: none;
+}
+
+.pricelist__content{
+    display: flex;
+}
+
+.pricelist__left,
+.pricelist__right{
+    width: 50%;
+}
+
+
+.prices{
+    background-color: #003469;
+    padding: 2.5rem;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.pricelist__right{
+    color: #fff;
+}
+
+.prices__list{
+    border-bottom: 1px solid #FFFFFF;
+    padding: 2.5rem 0;
+    width: 100%;
+}
+
+.prices__item{
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.prices__item-price::after{
+    content: ' руб';
+}
+
+.prices__price--from::before{
+    content: 'от ';
+}

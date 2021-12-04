@@ -1,0 +1,104 @@
+.header {
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), center center/cover url('img/background/hero.png') no-repeat;
+}
+
+.header__wrapper {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+
+.header__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    background-color: #fff;
+}
+
+.header__top>* {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.header__content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header__top-center {
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo__icon {
+    fill: #003469;
+    width: 335px;
+    max-height: 24px;
+}
+
+.hyundai-button {
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    outline: none;
+    border: none;
+}
+
+.hyundai-button--orange {
+    background-color: #EF4123;
+    color: #fff;
+}
+
+.header__bottom {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.nav__list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav__list-item {
+    flex: 1;
+    text-align: center;
+    padding: 1rem 0;
+    border-left: 1px solid #fff;
+}
+
+.nav__list-item:last-child {
+    border-right: 1px solid #fff;
+}
+
+.nav__link {
+    text-decoration: underline;
+}
+
+.test-section {
+    height: 100vh;
+}
+
+.left__block {
+    padding-left: 6rem;
+    color: #fff;
+}
+
+.left__block-head {
+    width: 70%;
+    font-weight: 500;
+    font-size: 5rem;
+    text-transform: uppercase;
+}
+
+.left__block-text {
+    max-width: 50%;
+    font-size: 2.5rem;
+}

@@ -1,5 +1,43 @@
-include blocks/head.pug
-body
-    .container
-        #app
-            test-component
+//- include blocks/head.pug
+//- include blocks/header/header.pug
+
+doctype html
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Hyundai
+    include blocks/header/header.pug
+    include blocks/calc/calc.pug
+    include blocks/pricelist/pricelist.pug
+    //- header/.header
+    //-     .header__wrapper
+    //-         .header__top
+    //-             .container
+    //-                 .header__top-left
+    //-                     .logo
+    //-                         svg.logo__icon
+    //-                             use(xlink:href="img/main-sprite.svg#logo")
+    //-                 .header__top-center
+    //-                     span Пн-Вс с 8:00 до 22:00
+    //-                     address ул. Торговая, д. 22
+    //-                 .header__top-right
+    //-                     a.header__phone(href='tel:88122202158') +7(812)220-21-58
+    //-                     button.hyundai-button.hyundai-button--orange(type='button') Заказать звонок
+    //-         .header__bottom
+    //-             .container
+    //-                 nav.nav
+    //-                     ul.nav__list
+    //-                         li.nav__list-item
+    //-                             a.nav__link(href='') Запись на сервис
+    //-                         li.nav__list-item
+    //-                             a.nav__link(href='') Кузовной ремонт
+    //-                         li.nav__list-item
+    //-                             a.nav__link(href='') Акции
+    //-         .header__content
+    //-             .container
+    //-                 .left__block
+    //-                     h1.left__block-head Мега Hyundai Парнас!
+    //-                     p.left__block-text -90% на обслуживание! Мега акции для первых покупателей!
+

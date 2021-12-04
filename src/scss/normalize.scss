@@ -1,3 +1,27 @@
-body{
+html{
+    font-family: 'HyundaiText', Arial, Helvetica, sans-serif;
+}
+
+html, body {
     width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'HyundaiHead', Arial, Helvetica, sans-serif;
 }

@@ -2,14 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { VueLoaderPlugin } = require('vue-loader');
-const env = process.env.NODE_ENV
+const env = process.env.NODE_ENV;
 const isDevelopment = env === 'development';
 const isProduction = env === 'production';
+const currMode = env === isDevelopment || isProduction ? process.env.NODE_ENV : 'none';
 
 console.log(isDevelopment);
 console.log(isProduction);
 
 const config = {
+    mode: currMode,
     entry: {
         main: './src/app.js',
     },

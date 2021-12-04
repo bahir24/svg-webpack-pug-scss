@@ -1,0 +1,44 @@
+.offers {
+    display: flex;
+    color: #fff;
+}
+
+.offers__right,
+.offers__left {
+    width: 50%;
+}
+
+.offer {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    padding: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.offer__image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    width: 100%;
+    filter: brightness(50%);
+    height: 100%;
+    object-fit: cover;
+}
+
+.offer__head {
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+.offer__text {
+    font-size: 1.125rem;
+    font-weight: 500;
+    width: 55%;
+    margin-bottom: auto;
+}
