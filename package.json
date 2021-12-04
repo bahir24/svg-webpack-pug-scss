@@ -1,0 +1,31 @@
+{
+  "name": "build_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "prod": "rm -rf dist && webpack --mode production --progress",
+    "dev": "rm -rf dist && webpack --mode development --progress",
+    "watch": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^8.2.3",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^6.5.1",
+    "html-loader": "^3.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "pug": "^3.0.2",
+    "pug-html-loader": "^1.1.5",
+    "pug-loader": "^1.0.2",
+    "sass": "^1.44.0",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  }
+}
