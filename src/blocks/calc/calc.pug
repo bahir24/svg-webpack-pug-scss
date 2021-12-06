@@ -1,16 +1,2 @@
 section.calc
-	.container
-		ul.calc__tabs
-			li.calc__tabs-item.active
-				label(for='reglament-tab-input') Прохождение ТО
-			li.calc__tabs-item
-				label(for='oil-tab-input') Масляный сервис
-		.calc-filter
-			.calc-filter__left
-				.calc-result
-					span.calc-result__head Стоимость
-					p.calc-result__price 2375
-					button.hyundai-button.hyundai-button--orange(type='button') Заказать звонок
-			.calc-filter__right
-				+radio('reglament-tab', 'calc-tabs')
-		include tab.pug
+	#app

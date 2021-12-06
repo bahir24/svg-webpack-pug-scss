@@ -2,12 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { VueLoaderPlugin } = require('vue-loader');
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV
 const isDevelopment = env === 'development';
 const isProduction = env === 'production';
-const currMode = env === isDevelopment || isProduction ? process.env.NODE_ENV : 'none';
+const currMode = isDevelopment || isProduction ? env : 'none';
 
-console.log(isDevelopment);
+console.log(env);
 console.log(isProduction);
 
 const config = {
@@ -46,7 +46,7 @@ const config = {
                     {
                         loader: "pug-html-loader",
                         options: {
-                            pretty: isDevelopment,
+                            pretty: true,
                         },
                     },
                 ],
@@ -76,15 +76,6 @@ const config = {
         port: '8080',
         hot: true,
     },
-
-    // resolve: {
-
-    // extensions: ['*', '.js', '.vue', '.json']
-    //     alias: {
-    //         'vue': 'vue/dist/vue.js',
-    //         'vue$': 'vue/dist/vue.esm.js'
-    //     },
-    // },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.pug',
@@ -109,7 +100,7 @@ const config = {
             filename: "[name][contenthash].css",
             chunkFilename: "[contenthash].css"
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
     ]
 };
 

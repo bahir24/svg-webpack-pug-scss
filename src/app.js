@@ -1,11 +1,11 @@
 import './main.scss';
 
 import Vue from 'vue';
-import TestComponent from './components/TestComponent.vue';
+import Calculator from './components/Calculator.vue';
 
 
 new Vue({
  el: '#app',
- render: h => h(TestComponent),
+ render: h => h(Calculator),
 })
 
