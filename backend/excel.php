@@ -26,17 +26,13 @@ foreach ($xml->sheetData->row as $item) {
 $dataSheet = [];
 foreach (array_values($out) as $item) {
     $arrItem = [];
-    $arrItem['name'] = $item[0];
-    $arrItem['code'] = $item[1];
-    $arrItem['year'] = $item[2];
-    $arrItem['value'] = $item[3];
-    $arrItem['type'] = $item[4];
-    $arrItem['prices'] = [$item[5], $item[6], $item[7], $item[8], $item[9], $item[10], $item[11], $item[12]];
+    $arrItem['name'] = trim($item[0]);
+    $arrItem['code'] = trim($item[1]);
+    $arrItem['year'] = trim($item[2]);
+    $arrItem['value'] = trim($item[3]);
+    $arrItem['type'] = trim($item[4]);
+    $arrItem['prices'] = [trim($item[5]), trim($item[6]), trim($item[7]), trim($item[8]), trim($item[9]), trim($item[10]), trim($item[11]), trim($item[12])];
     $dataSheet[] = $arrItem;
 }
 $json = json_encode(array('offerData' => $dataSheet));
 file_put_contents("./excel/data.json", $json);
-
-// $excel = file_get_contents($file['tmp_name']);
-// var_dump($excel);
-//

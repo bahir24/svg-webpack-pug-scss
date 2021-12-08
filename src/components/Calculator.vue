@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="!loading">
             <ul class="calc__tabs">
                 <li class="calc__tabs-item" v-bind:class="{ active : tab }" @click="tab = !tab">
                     <label for="reglament-tab-input">
@@ -16,17 +16,17 @@
                 <div class="calc-filter__left">
                     <div class="calc-result">
                         <span class="calc-result__head">Стоимость</span>
-                        <p class="calc-result__price">2375</p>
+                        <p class="calc-result__price">{{ price ? price : '-' }}</p>
                         <button class="hyundai-button hyundai-button--orange" type="button">Заказать звонок</button>
                     </div>
                 </div>
                 <div class="calc-filter__right">
                     <div class="reglament-tab">
                         <ul class="calc-filter__tabs">
-                            <li v-for="(category, index) in calc.reglament.data" :key="index" @click="category.isOpen = !category.isOpen" class="calc-filter__tabs-item">
+                            <li v-for="(category, index) in selects" :key="index" @click="categoryOpen(category)" class="calc-filter__tabs-item">
 								<span>{{ category.checked ? category.checked : category.name }}</span>
 								 <ul class="calc-dropdown" v-bind:class="{ active : category.isOpen }">
-								 	<li class="calc-dropdown__item" v-for="(value, index) in category.value" :key="index" @click="category.checked = value">
+								 	<li class="calc-dropdown__item" v-for="(value, index) in category.values" :key="index" @click="checkCategory(category, value, $event)">
 									 	{{ value }}
 									</li>
 								 </ul>
@@ -41,77 +41,114 @@
 <script>
 export default {
 	mounted(){
-	fetch("excel/data.json")
-    	.then(r => r.json())
-    	.then(json => {
-      	this.jsonData=json;
-    },
+		this.loading = true;
+		fetch("data.json")
+			.then(r => r.json())
+			.then(json => {
+			this.jsonData=json.offerData;
+			this.loading = false;
+			this.filterData();
+		},
 	response => {
+
   		console.log('Error loading json:', response)
-	})
+		this.loading = true;
+	});
+
+	// .finally(() => {this.loading = true;})
 	},
   name: 'calculator',
   data() {
     return {
-		jsonData: false,
-        calc: {
-        	reglament: {
-				data: {
-					model: {
-						name: 'Модель',
-						checked: false,
-						isOpen: true,
-						value: ['creta', 'tucson', 'solaris', 'santa', 'palisade', 'h1'],
-					},
-					engineValue: {
-						name: 'Рабочий объем',
-						checked: false,
-						isOpen: false,
-						value: ['1.4', '1.6', '1.8', '2.0', '2.4 GDi', '2.5', '1.6T GDI', '2.5 GDI', '3.5', '2.2', '2.4', '3.3', '3.0 GDI'],
-					},
-					engineType: {
-						name: 'Тип двигателя',
-						checked: false,
-						isOpen: false,
-						value: ['бензиновый', 'дизельный'],
-					},
-					reglamentCount: {
-						name: 'Номер ТО',
-						checked: false,
-						isOpen: false,
-						value: ['ТО-1', 'ТО-2', 'ТО-3', 'ТО-4', 'ТО-5', 'ТО-6', 'ТО-7'],
-					}
-				},
-        	},
-			oil: {
-				data: {
-					model: {
-						name: 'Модель',
-						value: ['creta', 'tucson', 'solaris', 'santa', 'palisade', 'h1'],
-					},
-					engineValue: {
-						name: 'Рабочий объем',
-						value: ['1.4', '1.6', '1.8', '2.0', '2.4 GDi', '2.5', '1.6T GDI', '2.5 GDI', '3.5', '2.2', '2.4', '3.3', '3.0 GDI'],
-					},
-					engineType: {
-						name: 'Тип двигателя',
-						value: ['бензиновый', 'дизельный'],
-					},
-					reglamentCount: {
-						name: 'Номер ТО',
-						value: ['ТО-1', 'ТО-2', 'ТО-3', 'ТО-4', 'ТО-5', 'ТО-6', 'ТО-7'],
-					}
-				}
-			}
-      },
-      tab: true,
+		price: undefined,
+		loading: false,
+		jsonData: undefined,
+		carList: undefined,
+		selects: {
+			names: {
+				name: 'Модель',
+				values: undefined,
+				checked: undefined,
+				isOpen: true,
+			},
+			types: {
+				name: 'Тип двигателя',
+				values: undefined,
+				checked: undefined,
+				isOpen: false,
+			},
+			values: {
+				name: 'Рабочий объем',
+				values: undefined,
+				checked: undefined,
+				isOpen: false,
+			},
+			years: {
+				name: 'Год',
+				values: undefined,
+				checked: undefined,
+				isOpen: false,
+			},
+			reglamentCount: {
+				name: 'Номер ТО',
+				values: ['ТО-1', 'ТО-2', 'ТО-3', 'ТО-4', 'ТО-5', 'ТО-6', 'ТО-7', 'ТО-8'],
+				checked: undefined,
+				isOpen: false,
+			},
+		},
+    	tab: true,
     }
   },
-  computed: {
+	computed: {
+  	},
+	methods: {
+		categoryOpen(category){
+			if(!category.isOpen){
+				category.checked = undefined;
+			}
+			category.isOpen = !category.isOpen;
+			this.filterData();
+		},
+		checkCategory(category, value, event){
+			event.stopPropagation();
+			category.checked = value;
+			this.filterData();
+			category.isOpen = false;
+			if(this.carList.length == 1 && this.selects.reglamentCount.checked){
+				let index = this.selects.reglamentCount.checked.substr(-1) - 1;
+				this.price = this.carList[0].prices[index];
+			} else {
+				this.price = undefined;
+			}
+		},
+		filterData(){
+			let carList = this.jsonData.filter(car => {
+				return (this.selects.names.checked ? car.name == this.selects.names.checked : true) &&
+				(this.selects.values.checked ? car.value == this.selects.values.checked : true) &&
+				(this.selects.types.checked ? car.type == this.selects.types.checked : true) &&
+				(this.selects.years.checked ? car.year == this.selects.years.checked : true);
+			});
+			this.carList = carList;
+			this.selectsValue();
 
-  },
-  methods: {
-  }
+		},
+		selectsValue(){
+			let setModels = new Set();
+			let setValues = new Set();
+			let setTypes = new Set();
+			let setYears = new Set();
+			this.carList.forEach(car => {
+				setModels.add(car.name);
+				setValues.add(car.value);
+				setTypes.add(car.type);
+				setYears.add(car.year);
+			});
+			this.selects.names.values = [...setModels];
+			this.selects.types.values = [...setTypes];
+			this.selects.values.values = [...setValues];
+			this.selects.years.values = [...setYears];
+		},
+	}
 }
 
 </script>
