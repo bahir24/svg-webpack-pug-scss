@@ -16,7 +16,7 @@
                 <div class="calc-filter__left">
                     <div class="calc-result">
                         <span class="calc-result__head">Стоимость</span>
-                        <p class="calc-result__price">{{ price ? price : '-' }}</p>
+                        <p class="calc-result__price">{{ price ? Math.floor(price) : '-' }}</p>
                         <button class="hyundai-button hyundai-button--orange" type="button">Заказать звонок</button>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ export default {
 		selects: {
 			names: {
 				name: 'Модель',
-				values: undefined,
+				values: ['Solaris', 'Elantra', 'Sonata', 'Creta', 'Tucson', 'Santa Fe', 'Grand Santa Fe', 'Palisade', 'H1'],
 				checked: undefined,
 				isOpen: true,
 			},
@@ -91,6 +91,7 @@ export default {
 			},
 			reglamentCount: {
 				name: 'Номер ТО',
+				// currentIndex: this.selects.values.indexOf(this.selects.checked),
 				values: ['ТО-1', 'ТО-2', 'ТО-3', 'ТО-4', 'ТО-5', 'ТО-6', 'ТО-7', 'ТО-8'],
 				checked: undefined,
 				isOpen: false,
@@ -106,22 +107,41 @@ export default {
 			if(!category.isOpen){
 				category.checked = undefined;
 			}
+			console.log(this.carList);
+			if(!this.carList){
+				3
+
+			// 	this.selects.types.values = undefined;
+			// this.filterData();
+						}
 			category.isOpen = !category.isOpen;
 			this.filterData();
 		},
 		checkCategory(category, value, event){
 			event.stopPropagation();
 			category.checked = value;
-			this.filterData();
-			category.isOpen = false;
-			if(this.carList.length == 1 && this.selects.reglamentCount.checked){
+
+			if(category.name == 'Модель'){
+				console.log('here');
+				this.selects.types.values = undefined;
+				this.selects.values.values = undefined;
+				this.selects.values.values = undefined;
+				this.selects.values.checked = undefined;
+				this.selects.values.checked = undefined;
+				this.selects.years.checked = undefined;
+			}
+			if(this.carList.length === 1 && this.selects.reglamentCount.checked){
+				console.log(category);
 				let index = this.selects.reglamentCount.checked.substr(-1) - 1;
 				this.price = this.carList[0].prices[index];
 			} else {
 				this.price = undefined;
 			}
+			this.filterData();
+			category.isOpen = false;
 		},
 		filterData(){
+
 			let carList = this.jsonData.filter(car => {
 				return (this.selects.names.checked ? car.name == this.selects.names.checked : true) &&
 				(this.selects.values.checked ? car.value == this.selects.values.checked : true) &&
@@ -133,20 +153,21 @@ export default {
 
 		},
 		selectsValue(){
-			let setModels = new Set();
+			// let setModels = new Set();
 			let setValues = new Set();
 			let setTypes = new Set();
 			let setYears = new Set();
 			this.carList.forEach(car => {
-				setModels.add(car.name);
+				// setModels.add(car.name);
 				setValues.add(car.value);
 				setTypes.add(car.type);
 				setYears.add(car.year);
 			});
-			this.selects.names.values = [...setModels];
+			// this.selects.names.values = [...setModels];
 			this.selects.types.values = [...setTypes];
 			this.selects.values.values = [...setValues];
 			this.selects.years.values = [...setYears];
+			// console.log(this.selects.names.values);
 		},
 	}
 }
