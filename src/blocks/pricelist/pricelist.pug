@@ -1,45 +1,128 @@
-section.pricelist
+section.pricelist(id="pricelist")
 	.container
-		.pricelist__head Услуги сервиса
+		.pricelist__head
+			h2 Услуги сервиса
 		.pricelist__content
 			.pricelist__left
 				ul.catalog-list
 					li.catalog-list__item.active
 						label(for='tyres') Шиномонтаж
 					li.catalog-list__item
-						label(for='tyres') Замена эксплуатационных жидкостей
+						label(for='fluid') Замена эксплуатационных жидкостей
 					li.catalog-list__item
-						label(for='fluid') Ремонт тормозной системы
+						label(for='brakes') Ремонт тормозной системы
 					li.catalog-list__item
-						label(for='brakes') Масляно—кузовные работы
+						label(for='suspension') Ремонт подвески
 					li.catalog-list__item
-						label(for='paint') Ремонт подвески
+						label(for='carwash') Автомойка
 					li.catalog-list__item
-						label(for='suspension') Автомойка
+						label(for='autoelectrics') Ремонт электрооборудовани
 					li.catalog-list__item
-						label(for='carwash') Ремонт электрооборудовани
+						label(for='everyday') Повседневное
 					li.catalog-list__item
-						label(for='autoelectrics') Агрегатный ремонт
+						label(for='privilege') Привилегии для клиентов
 			.pricelist__right
 				.prices
+					input.radio-hidden(type="radio" name="pricelist" id="tyres" checked)
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Развал—схождение
-							span.prices__item-price.prices__price--from 1350
+							span.prices__item-price.prices__price--from 1690
 						li.prices__item
 							span.prices__item-name Шиномонтаж
-							span.prices__item-price.prices__price--from 2000
+							span.prices__item-price.prices__price--from 3000
 						li.prices__item
-							span.prices__item-name Сезонное крепление колёс
-							span.prices__item-price 2500
+							span.prices__item-name Сезонное хранение колёс
+							span.prices__item-price 3000
+					input.radio-hidden(type="radio" name="pricelist" id="fluid")
+					ul.prices__list
 						li.prices__item
-							span.prices__item-name Осмотр ходовой системы
+							span.prices__item-name Замена масла в АКПП ( полная - аппаратная )
+							span.prices__item-price.prices__price--from 4200
+						li.prices__item
+							span.prices__item-name Замена масла и маслянного фильтра включая защиту ДВС
+							span.prices__item-price.prices__price--from 999
+						li.prices__item
+							span.prices__item-name Замена охлаждающей жидкости
+							span.prices__item-price.prices__price--from 2240
+						li.prices__item
+							span.prices__item-name Корректирвока уровня охлаждающей жидкости
+							span.prices__item-price.prices__price--from 280
+						li.prices__item
+							span.prices__item-name Замена тормозной жидкости, включая материал
+							span.prices__item-price 2980
+						li.prices__item
+							span.prices__item-name Перезаправка кондиионера с индикатором утечки
+							span.prices__item-price.prices__price--from 3390
+					input.radio-hidden(type="radio" name="pricelist" id="brakes")
+					ul.prices__list
+						li.prices__item
+							span.prices__item-name Замена тормозных колодок, дисковые тормоза
+							span.prices__item-price.prices__price--from 1690
+						li.prices__item
+							span.prices__item-name Осмотр тормозной системы
+							span.prices__item-price.prices__price--from 1680
+						li.prices__item
+							span.prices__item-name Диагностика тормозной системы на стенде МАХА
+							span.prices__item-price 1680
+						li.prices__item
+							span.prices__item-name Профилактика тормозной системы на одну ось
+							span.prices__item-price 2240
+						li.prices__item
+							span.prices__item-name Замена тормозных колодок и дисков одна ось
+							span.prices__item-price 4480
+					input.radio-hidden(type="radio" name="pricelist" id="suspension")
+					ul.prices__list
+						li.prices__item
+							span.prices__item-name Развал схождение, одна ось проверка и регулирвока
+							span.prices__item-price 1960
+						li.prices__item
+							span.prices__item-name Развал схождение, две оси проверка и регулирвока
+							span.prices__item-price 3920
+						li.prices__item
+							span.prices__item-name Шпилька крепления колеса, замена
+							span.prices__item-price 2800
+						li.prices__item
+							span.prices__item-name Ступичный подшипник - замена
+							span.prices__item-price 1500
+					input.radio-hidden(type="radio" name="pricelist" id="carwash")
+					ul.prices__list
+						li.prices__item
+							span.prices__item-name Технологическая с обезжириванием
+							span.prices__item-price 550
+						li.prices__item
+							span.prices__item-name Мойка экспресс
+							span.prices__item-price 1000
+						li.prices__item
+							span.prices__item-name Мойка комфорт
 							span.prices__item-price 1500
 						li.prices__item
-							span.prices__item-name Проверка трансмиссии
-							span.prices__item-price 700
+							span.prices__item-name Мойка премиум
+							span.prices__item-price 2000
+					input.radio-hidden(type="radio" name="pricelist" id="autoelectrics")
+					ul.prices__list
 						li.prices__item
-							span.prices__item-name Диагностика
+							span.prices__item-name Регулирвока фар
+							span.prices__item-price 560
+						li.prices__item
+							span.prices__item-name Програмирование ключа
+							span.prices__item-price 1680
+						li.prices__item
+							span.prices__item-name Замена лампочки
+							span.prices__item-price.prices__price--from 280
+					input.radio-hidden(type="radio" name="pricelist" id="everyday")
+					ul.prices__list
+						li.prices__item
+							span.prices__item-name Осмотр ходовой
+							span.prices__item-price 1680
+						li.prices__item
+							span.prices__item-name Считывание ошибок
+							span.prices__item-price 2240
+					input.radio-hidden(type="radio" name="pricelist" id="privilege")
+					ul.prices__list
+						li.prices__item
+							span.prices__item-name Полная диагностика А/М под окончание гарантии
+								br
+								|( 0 р. При ремонте у нас по результатам диагностики )
 							span.prices__item-price 500
 					button.hyundai-button(type='button') Заказать звонок
-section.test-section

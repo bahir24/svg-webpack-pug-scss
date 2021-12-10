@@ -12,7 +12,7 @@
     }
     &:last-child{
         &:after{
-            // content: '';
+            content: '';
             bottom: 0;
         }
     }
@@ -45,6 +45,17 @@
     display: flex;
 }
 
+.pricelist__head{
+    padding: 2.5rem 0;
+}
+
+.radio-hidden{
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    position: absolute;
+}
+
 .pricelist__left,
 .pricelist__right{
     width: 50%;
@@ -68,6 +79,12 @@
     border-bottom: 1px solid #FFFFFF;
     padding: 2.5rem 0;
     width: 100%;
+    display: none;
+
+}
+
+.radio-hidden:checked + .prices__list{
+    display: block;
 }
 
 .prices__item{

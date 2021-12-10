@@ -1,0 +1,54 @@
+.contacts{
+    height: 50vh;
+    display: flex;
+}
+
+.contacts__left,
+.contacts__right{
+    width: 50%;
+}
+
+.contacts__left{
+    background-color: $color-hyundai-blue;
+    color: #fff;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.contacts__city{
+    font-size: 2.5rem;
+}
+
+.addres__left,
+.addres__right{
+    width: 50%;
+}
+
+.addres__left{
+    font-size: 1.125rem;
+    address{
+        margin-bottom: 1.5rem;
+    }
+    .addres__place{
+        margin-bottom: 3rem;
+    }
+}
+
+.addres-blocks{
+    display: flex;
+    align-items: flex-end;
+}
+
+.addres__desc{
+font-size: 1.125rem;
+color: #6D93BA;
+font-weight: 500;
+}
+
+.contacts__map{
+    height: 100%;
+    filter: invert(100%) grayscale(100%);
+}

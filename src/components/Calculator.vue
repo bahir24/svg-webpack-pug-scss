@@ -16,7 +16,7 @@
                 <div class="calc-filter__left">
                     <div class="calc-result">
                         <span class="calc-result__head">Стоимость</span>
-                        <p class="calc-result__price">{{ price ? Math.floor(price) : '-' }}</p>
+                        <p class="calc-result__price">{{ price || Number(price) == 0 ? Number(Math.floor(price)).toLocaleString().replace(',', ' ') : '7 027' }}</p>
                         <button class="hyundai-button hyundai-button--orange" type="button">Заказать звонок</button>
                     </div>
                 </div>
@@ -24,12 +24,17 @@
                     <div class="reglament-tab">
                         <ul class="calc-filter__tabs">
                             <li v-for="(category, index) in selects" :key="index" @click="categoryOpen(category)" class="calc-filter__tabs-item">
-								<span>{{ category.checked ? category.checked : category.name }}</span>
-								 <ul class="calc-dropdown" v-bind:class="{ active : category.isOpen }">
-								 	<li class="calc-dropdown__item" v-for="(value, index) in category.values" :key="index" @click="checkCategory(category, value, $event)">
-									 	{{ value }}
-									</li>
-								 </ul>
+								<div class="category-line" v-bind:class="{ open : category.isOpen }">
+									<span>{{ category.checked ? category.checked : category.name }}</span>
+									<div class="toggle" v-bind:class="{ open : category.isOpen }"></div>
+								</div>
+
+
+								<ul class="calc-dropdown" v-bind:class="{ active : category.isOpen }">
+								<li class="calc-dropdown__item" v-for="(value, index) in category.values" :key="index" @click="checkCategory(category, value, $event)">
+									{{ value }}
+								</li>
+								</ul>
 							</li>
                         </ul>
                     </div>
@@ -54,8 +59,6 @@ export default {
   		console.log('Error loading json:', response)
 		this.loading = true;
 	});
-
-	// .finally(() => {this.loading = true;})
 	},
   name: 'calculator',
   data() {
@@ -91,8 +94,7 @@ export default {
 			},
 			reglamentCount: {
 				name: 'Номер ТО',
-				// currentIndex: this.selects.values.indexOf(this.selects.checked),
-				values: ['ТО-1', 'ТО-2', 'ТО-3', 'ТО-4', 'ТО-5', 'ТО-6', 'ТО-7', 'ТО-8'],
+				values: ['ТО-0', 'ТО-1  1 год или 15 000км', 'ТО-2 1 год или 30 000км', 'ТО-3 1 год или 45 000км', 'ТО-4 1 год или 60 000км', 'ТО-5 1 год или 75 000км', 'ТО-6  1 год или 90 000км', 'ТО-7 1 год или 105 000км', 'ТО-8  1 год или 120 000км'],
 				checked: undefined,
 				isOpen: false,
 			},
@@ -107,13 +109,6 @@ export default {
 			if(!category.isOpen){
 				category.checked = undefined;
 			}
-			console.log(this.carList);
-			if(!this.carList){
-				3
-
-			// 	this.selects.types.values = undefined;
-			// this.filterData();
-						}
 			category.isOpen = !category.isOpen;
 			this.filterData();
 		},
@@ -122,18 +117,17 @@ export default {
 			category.checked = value;
 
 			if(category.name == 'Модель'){
-				console.log('here');
-				this.selects.types.values = undefined;
-				this.selects.values.values = undefined;
-				this.selects.values.values = undefined;
 				this.selects.values.checked = undefined;
 				this.selects.values.checked = undefined;
 				this.selects.years.checked = undefined;
 			}
 			if(this.carList.length === 1 && this.selects.reglamentCount.checked){
-				console.log(category);
-				let index = this.selects.reglamentCount.checked.substr(-1) - 1;
-				this.price = this.carList[0].prices[index];
+				let index = this.selects.reglamentCount.values.indexOf(this.selects.reglamentCount.checked);
+				if(this.selects.reglamentCount.checked == 'ТО-0'){
+					this.price = 0;
+				} else {
+					this.price = this.carList[0].prices[index];
+				}
 			} else {
 				this.price = undefined;
 			}

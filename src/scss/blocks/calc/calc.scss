@@ -2,7 +2,7 @@
     padding: 3.75rem 0;
 }
 
-.calc-tab-input:checked + .reglament-tab{
+.calc-tab-input:checked+.reglament-tab {
     display: block;
 }
 
@@ -19,7 +19,7 @@
     display: flex;
 }
 
-.calc__tabs .active{
+.calc__tabs .active {
     color: #003469;
 }
 
@@ -43,7 +43,8 @@
     max-height: 0rem;
     overflow: hidden;
     transition: max-height .3s;
-    &.active{
+
+    &.active {
         transition: max-height .3s;
         max-height: 80rem;
     }
@@ -51,11 +52,18 @@
 
 .calc-filter__tabs-item {
     border-bottom: 1px solid #E8E8E8;
-    span{
-        display: block;
+    .category-line {
         padding: 2.5rem 1rem;
         text-transform: capitalize;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &.open{
+            background-color: #EEEEEE;
+        }
     }
+
+
 
 }
 
@@ -66,7 +74,7 @@
     padding: 2.5rem 1rem;
 }
 
-.calc-filter__tabs-item .toggle {
+.toggle {
     width: 1rem;
     height: 1rem;
     border: 1px solid #000;
@@ -74,21 +82,24 @@
     border-right: transparent;
     border-bottom: transparent;
     transition: transform .3s;
+    &.open{
+        transform: rotate(225deg);
+    }
 }
 
-.calc-filter__tabs-item input[type="radio"]:checked~ .tab-label {
+.calc-filter__tabs-item input[type="radio"]:checked~.tab-label {
     background-color: #E8E8E8;
 }
 
-.calc-filter__tabs-item input[type="radio"]:checked~ .tab-label .toggle {
+.calc-filter__tabs-item input[type="radio"]:checked~.tab-label .toggle {
     transform: rotate(225deg);
 }
 
-.calc-filter__tabs-item input[type="radio"]:checked~ .calc-dropdown {
+.calc-filter__tabs-item input[type="radio"]:checked~.calc-dropdown {
     max-height: 50rem;
 }
 
-.calc-dropdown__item{
+.calc-dropdown__item {
     text-transform: capitalize;
     padding: 2.5rem 1rem;
 
@@ -99,21 +110,21 @@
     color: #fff;
 }
 
-.calc-result{
+.calc-result {
     padding: 2.5rem 0;
 }
 
-.calc-result__head{
+.calc-result__head {
     display: block;
     margin-bottom: .6rem;
     font-size: 1.25rem;
 }
 
-.calc-result__price{
+.calc-result__price {
     margin-bottom: .6rem;
     font-size: 2.5rem;
 }
 
-.calc-result__price::after{
-    content: 'руб';
+.calc-result__price::after {
+    content: ' руб';
 }

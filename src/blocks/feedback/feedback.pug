@@ -1,0 +1,16 @@
+section.feedback(id="feedback")
+	.container
+		.feedback__content
+			h2.feedback__head Сложный случай?
+				br
+				|Мы можем всё! Только спросите!
+			p.feedback__text Оставьте заявку, мы позвоним Вам и поможем
+				br
+				|с любым вопросом по обслуживанию,
+				br
+				|восстановлению и улучшению Вашего Hyundai!
+			form.feedback__form(action="message.php" method="post")
+				.feedback__form-inputs
+					input.feedback__form-input(type="text" name="name" placeholder="Напишите как вас зовут")
+					input.feedback__form-input(type="text" name="phone"  placeholder="Напишите Ваш номер телефона")
+				button.hyundai-button.hyundai-button--orange(type='submit') Обратный звонок

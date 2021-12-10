@@ -1,5 +1,6 @@
 html{
     font-family: 'HyundaiText', Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
 
 html, body {
@@ -25,3 +26,13 @@ a {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'HyundaiHead', Arial, Helvetica, sans-serif;
 }
+
+::-webkit-input-placeholder {color:#A0A0A0;}
+::-moz-placeholder          {color:#A0A0A0;}
+:-moz-placeholder           {color:#A0A0A0;}
+:-ms-input-placeholder      {color:#A0A0A0;}
+
+:focus::-webkit-input-placeholder {color: transparent}
+:focus::-moz-placeholder          {color: transparent}
+:focus:-moz-placeholder           {color: transparent}
+:focus:-ms-input-placeholder      {color: transparent}

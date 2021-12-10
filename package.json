@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@splidejs/splide": "^3.6.9",
     "vue": "^2.6.14"
   }
 }
