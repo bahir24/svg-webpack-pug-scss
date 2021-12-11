@@ -16,7 +16,7 @@
                 <div class="calc-filter__left">
                     <div class="calc-result">
                         <span class="calc-result__head">Стоимость</span>
-                        <p class="calc-result__price">{{ price || Number(price) == 0 ? Number(Math.floor(price)).toLocaleString().replace(',', ' ') : '7 027' }}</p>
+                        <p class="calc-result__price">{{ price ? price : '7 027 руб' }}</p>
                         <button class="hyundai-button hyundai-button--orange" type="button">Заказать звонок</button>
                     </div>
                 </div>
@@ -28,8 +28,6 @@
 									<span>{{ category.checked ? category.checked : category.name }}</span>
 									<div class="toggle" v-bind:class="{ open : category.isOpen }"></div>
 								</div>
-
-
 								<ul class="calc-dropdown" v-bind:class="{ active : category.isOpen }">
 								<li class="calc-dropdown__item" v-for="(value, index) in category.values" :key="index" @click="checkCategory(category, value, $event)">
 									{{ value }}
@@ -116,26 +114,26 @@ export default {
 			event.stopPropagation();
 			category.checked = value;
 
+
 			if(category.name == 'Модель'){
-				this.selects.values.checked = undefined;
+				this.selects.types.checked = undefined;
 				this.selects.values.checked = undefined;
 				this.selects.years.checked = undefined;
 			}
+			this.filterData();
 			if(this.carList.length === 1 && this.selects.reglamentCount.checked){
 				let index = this.selects.reglamentCount.values.indexOf(this.selects.reglamentCount.checked);
 				if(this.selects.reglamentCount.checked == 'ТО-0'){
-					this.price = 0;
+					this.price = 'Бесплатно';
 				} else {
-					this.price = this.carList[0].prices[index];
+					this.price = this.carList[0].prices[index] + ' руб';
 				}
 			} else {
 				this.price = undefined;
 			}
-			this.filterData();
 			category.isOpen = false;
 		},
 		filterData(){
-
 			let carList = this.jsonData.filter(car => {
 				return (this.selects.names.checked ? car.name == this.selects.names.checked : true) &&
 				(this.selects.values.checked ? car.value == this.selects.values.checked : true) &&
@@ -147,21 +145,17 @@ export default {
 
 		},
 		selectsValue(){
-			// let setModels = new Set();
 			let setValues = new Set();
 			let setTypes = new Set();
 			let setYears = new Set();
 			this.carList.forEach(car => {
-				// setModels.add(car.name);
 				setValues.add(car.value);
 				setTypes.add(car.type);
 				setYears.add(car.year);
 			});
-			// this.selects.names.values = [...setModels];
 			this.selects.types.values = [...setTypes];
 			this.selects.values.values = [...setValues];
 			this.selects.years.values = [...setYears];
-			// console.log(this.selects.names.values);
 		},
 	}
 }

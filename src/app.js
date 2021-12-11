@@ -8,6 +8,19 @@ new Vue({
  el: '#app',
  render: h => h(Calculator),
 })
+var headerWrapper = document.querySelector('.header__wrapper');
+var scrollNavs = document.querySelectorAll('.nav__link');
+var headerHeight = headerWrapper.offsetHeight;
+scrollNavs.forEach(scrollNav =>{
+    scrollNav.addEventListener('click', function (event) {
+        event.preventDefault();
+        let currScroll = window.pageXOffset;
+        let scrollToSection = document.querySelector('.' + event.target.dataset.section);
+        let sectionOffset = scrollToSection.offsetTop - headerHeight;
+        window.scrollTo(0, sectionOffset);
+    });
+})
+
 
 var headerSticky = document.querySelector('header');
 window.addEventListener('scroll', function () {
@@ -17,7 +30,6 @@ window.addEventListener('scroll', function () {
     } else {
         headerSticky.classList.remove('header-show');
     }
-
 });
 
 var catalogListItems = document.querySelectorAll('.catalog-list__item');
@@ -50,7 +62,7 @@ new Splide( '.slider-photo', {
     padding: { right: 200 },
     type   : 'loop',
     classes: {
-		arrows: 'splide__arrows stranges-arrows',
+		arrows: 'splide__arrows photo-arrows container',
 		arrow : 'splide__arrow stranges-arrow',
 		prev  : 'splide__arrow--prev stranges-arrows-prev',
 		next  : 'splide__arrow--next stranges-arrows-next',
