@@ -6,14 +6,14 @@ header.header
 		.header__top
 			.container
 				.header__top-left
-					.logo
+					a.logo(href="/")
 						+icon('logo')(class="logo__icon")
 				.header__top-center
 					span Пн-Вс с 8:00 до 22:00
 					address ул. Торговая, д. 22
 				.header__top-right
 					a.header__phone(href='tel:88122202158') +7(812)220-21-58
-					button.hyundai-button.hyundai-button--orange(type='button') Заказать звонок
+					button.hyundai-button.hyundai-button--orange(type='button' data-target="feedbackModal") Заказать звонок
 		.header__bottom
 			.container
 				nav.nav

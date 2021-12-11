@@ -7,24 +7,24 @@ import Calculator from './components/Calculator.vue';
 new Vue({
  el: '#app',
  render: h => h(Calculator),
-})
-var headerWrapper = document.querySelector('.header__wrapper');
+});
+
+
+var headerHeight = document.querySelector('.header__wrapper').offsetHeight;
 var scrollNavs = document.querySelectorAll('.nav__link');
-var headerHeight = headerWrapper.offsetHeight;
 scrollNavs.forEach(scrollNav =>{
-    scrollNav.addEventListener('click', function (event) {
+    scrollNav.addEventListener('click', function () {
         event.preventDefault();
-        let currScroll = window.pageXOffset;
-        let scrollToSection = document.querySelector('.' + event.target.dataset.section);
+        let scrollToSection = document.querySelector('.' + this.dataset.section);
         let sectionOffset = scrollToSection.offsetTop - headerHeight;
         window.scrollTo(0, sectionOffset);
     });
-})
+});
 
 
 var headerSticky = document.querySelector('header');
 window.addEventListener('scroll', function () {
-    var bodyOffset = document.querySelector('body').getBoundingClientRect().top;
+    let bodyOffset = document.querySelector('body').getBoundingClientRect().top;
     if (bodyOffset < 0) {
         headerSticky.classList.add('header-show');
     } else {
@@ -34,15 +34,10 @@ window.addEventListener('scroll', function () {
 
 var catalogListItems = document.querySelectorAll('.catalog-list__item');
 catalogListItems.forEach(catalogListItem => {
-    catalogListItem.addEventListener('click', (e)=>{
-        let currItem = e.target;
-        if(!currItem.classList.contains('catalog-list__item')){
-            currItem = currItem.closest('.catalog-list__item');
-        }
+    catalogListItem.addEventListener('click', function(){
         let activeItem = document.querySelector('.catalog-list__item.active');
         activeItem.classList.remove('active');
-        currItem.classList.add('active');
-        console.log(currItem);
+        this.classList.add('active');
     })
 });
 
