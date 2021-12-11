@@ -4,8 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "prod": "rm -rf dist && cross-env NODE_ENV=production webpack --mode production --progress && chgrp -R www-data dist/ && cp backend/* dist/",
-    "dev": "rm -rf dist && cross-env NODE_ENV=development webpack --progress && chgrp -R www-data dist/ && cp backend/* dist/",
+    "prod": "find ./dist/* ! -name backend ! -name data.json ! -name excel.php ! -name upload.html -delete && cross-env NODE_ENV=production webpack --mode production --progress && chgrp -R www-data dist/ && cp backend/* dist/",
+    "dev": "find ./dist/* ! -name backend ! -name data.json ! -name excel.php ! -name upload.html -delete && cross-env NODE_ENV=development webpack --progress && chgrp -R www-data dist/ && cp backend/* dist/",
     "watch": "cross-env NODE_ENV=watch webpack-dev-server"
   },
   "keywords": [],
