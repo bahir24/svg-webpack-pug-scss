@@ -129,6 +129,75 @@ var pageObject = {
 };
 pageObject.init();
 
+var feedbackForm = {
+    init(){
+        if(this.feedbackForm()){
+            this.formSubmitListener(this);
+        };
+    },
+    formSubmitListener(mainObject){
+        mainObject.feedbackForm().addEventListener('submit', (event)=> mainObject.feedbackFormSubmit());
+    },
+    feedback(){
+        return document.querySelector('#feedback');
+    },
+
+    feedbackForm(){
+        return this.feedback().querySelector('form');
+    },
+    validation(){
+        let validationFields = this.feedbackForm().querySelectorAll('.validation');
+        let validationElements = {};
+        validationFields.forEach((element, index) => {
+            let name = element.parentNode.querySelector('input').name;
+            validationElements[name] = element;
+        });
+        return validationElements;
+    },
+    success(){
+        return this.feedback().querySelector('.success');
+    },
+
+    feedbackFormSubmit(){
+        event.preventDefault();
+        let formData = new FormData(this.feedbackForm());
+        fetch('/message.php', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(json => {
+            this.clearValidation();
+            if(json.errors){
+                this.fillValidation(json.errors);
+            } else if(json.success){
+                this.success().textContent = json.success;
+                setTimeout(()=>{
+                    this.clearSuccess();
+                }, 2000);
+            }
+        });
+
+    },
+
+    fillValidation(errors){
+        Object.keys(errors).forEach(errorKey => {
+            this.validation()[errorKey].textContent = errors[errorKey];
+        });
+    },
+    clearValidation(){
+        Object.values(this.validation()).forEach(msg => {
+            msg.textContent = '';
+        });
+    },
+    clearSuccess(){
+        this.success().textContent = '';
+        this.feedbackForm().reset();
+    }
+
+};
+feedbackForm.init();
+
 
 var headerHeight = document.querySelector('.header__wrapper').offsetHeight;
 var scrollNavs = document.querySelectorAll('.nav__link');
