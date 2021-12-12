@@ -175,6 +175,8 @@ var feedbackForm = {
                 setTimeout(()=>{
                     this.clearSuccess();
                 }, 2000);
+            } else {
+                console.log(json);
             }
         });
 

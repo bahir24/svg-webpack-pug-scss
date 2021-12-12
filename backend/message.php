@@ -39,7 +39,7 @@ if (count($errors)) {
     $success = mail($to, $subject, $message, $headers);
     if (!$success) {
         $errorMessage = error_get_last()['message'];
-        print_r($errorMessage);
+        echo json_encode($errorMessage);
     } else {
         echo json_encode(['success' => 'Мы получили ваше сообщение. Наши менеджеры скоро свяжутся с вами.']);
     }
