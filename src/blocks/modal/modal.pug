@@ -1,0 +1,16 @@
+.modal.modal-hide
+    .close
+    form.feedback__form(action="backend/message.php" method="post" name="modalForm")
+        h2.modal__text Оставьте заявку, и мы запишем Вас на диагностику в нашем центре.
+        .feedback__form-inputs.feedback__form-inputs--margin-right
+            .input-group
+                input.feedback__form-input(type="text" name="name" placeholder="Напишите как вас зовут")
+                span.validation
+            .input-group
+                input.feedback__form-input(type="text" name="phone"  placeholder="Напишите Ваш номер телефона")
+                span.validation
+        label.modal__agreeement
+            input.modal__agreeement-input(type="checkbox" name="agreement")
+            span.modal__agreeement-text Отправляя заявку Вы соглашаетесь с условиями обработки персональных данных
+            span.validation
+        button.hyundai-button.hyundai-button--orange(type='submit') Обратный звонок

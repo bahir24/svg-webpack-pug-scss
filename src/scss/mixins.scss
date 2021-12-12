@@ -6,3 +6,10 @@
         font-style: $styleMix;
     }
 }
+
+@mixin placeholder{
+    color:#A0A0A0;
+    font-weight: 500;
+    font-family: "HyundaiText", Arial, Helvetica, sans-serif;
+    font-size: 1.125rem;
+}

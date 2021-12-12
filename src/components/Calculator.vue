@@ -1,12 +1,12 @@
 <template>
   <div class="container" v-if="!loading">
             <ul class="calc__tabs">
-                <li class="calc__tabs-item" v-bind:class="{ active : tab }" @click="tab = !tab">
+                <li class="calc__tabs-item" v-bind:class="{ active : tab }" @click="switchTab()">
                     <label for="reglament-tab-input">
                         Прохождение ТО
                     </label>
                 </li>
-                <li class="calc__tabs-item" v-bind:class="{ active : !tab }" @click="tab = !tab">
+                <li class="calc__tabs-item" v-bind:class="{ active : !tab }" @click="switchTab()">
                     <label for="oil-tab-input">
                         Масляный сервис
                     </label>
@@ -16,20 +16,20 @@
                 <div class="calc-filter__left">
                     <div class="calc-result">
                         <span class="calc-result__head">Стоимость</span>
-                        <p class="calc-result__price">{{ price ? price : '7 027 руб' }}</p>
+                        <p class="calc-result__price">{{ price ? price : minPrice }}</p>
                         <button class="hyundai-button hyundai-button--orange" type="button">Заказать звонок</button>
                     </div>
                 </div>
                 <div class="calc-filter__right">
                     <div class="reglament-tab">
                         <ul class="calc-filter__tabs">
-                            <li v-for="(category, index) in selects" :key="index" @click="categoryOpen(category)" class="calc-filter__tabs-item">
+                            <li v-for="(category, categoryIndex) in selects" :key="categoryIndex" @click="categoryOpen(category)" class="calc-filter__tabs-item" v-bind:class="{ hidden : !category.show }">
 								<div class="category-line" v-bind:class="{ open : category.isOpen }">
 									<span>{{ category.checked ? category.checked : category.name }}</span>
 									<div class="toggle" v-bind:class="{ open : category.isOpen }"></div>
 								</div>
 								<ul class="calc-dropdown" v-bind:class="{ active : category.isOpen }">
-								<li class="calc-dropdown__item" v-for="(value, index) in category.values" :key="index" @click="checkCategory(category, value, $event)">
+								<li class="calc-dropdown__item" v-for="(value, index) in category.values" :key="index" @click="checkCategory(category, value, $event, categoryIndex)">
 									{{ value }}
 								</li>
 								</ul>
@@ -62,6 +62,7 @@ export default {
   data() {
     return {
 		price: undefined,
+		minPrice: '7 027 руб',
 		loading: false,
 		jsonData: undefined,
 		carList: undefined,
@@ -71,30 +72,35 @@ export default {
 				values: ['Solaris', 'Elantra', 'Sonata', 'Creta', 'Tucson', 'Santa Fe', 'Grand Santa Fe', 'Palisade', 'H1'],
 				checked: undefined,
 				isOpen: true,
+				show: true
 			},
 			types: {
 				name: 'Тип двигателя',
 				values: undefined,
 				checked: undefined,
 				isOpen: false,
+				show: true
 			},
 			values: {
 				name: 'Рабочий объем',
 				values: undefined,
 				checked: undefined,
 				isOpen: false,
+				show: true
 			},
 			years: {
 				name: 'Год',
 				values: undefined,
 				checked: undefined,
 				isOpen: false,
+				show: true
 			},
 			reglamentCount: {
 				name: 'Номер ТО',
 				values: ['ТО-0', 'ТО-1  1 год или 15 000км', 'ТО-2 1 год или 30 000км', 'ТО-3 1 год или 45 000км', 'ТО-4 1 год или 60 000км', 'ТО-5 1 год или 75 000км', 'ТО-6  1 год или 90 000км', 'ТО-7 1 год или 105 000км', 'ТО-8  1 год или 120 000км'],
 				checked: undefined,
 				isOpen: false,
+				show: true
 			},
 		},
     	tab: true,
@@ -103,6 +109,16 @@ export default {
 	computed: {
   	},
 	methods: {
+		switchTab(){
+			this.tab = !this.tab;
+			this.selects.reglamentCount.show = this.tab;
+			this.price = undefined;
+			if(this.tab){
+				this.minPrice = '7 027 руб'
+			} else {
+				this.minPrice = '2 999 руб'
+			}
+		},
 		categoryOpen(category){
 			if(!category.isOpen){
 				category.checked = undefined;
@@ -110,39 +126,29 @@ export default {
 			category.isOpen = !category.isOpen;
 			this.filterData();
 		},
-		checkCategory(category, value, event){
+		checkCategory(category, value, event, index){
 			event.stopPropagation();
 			category.checked = value;
-
-
-			if(category.name == 'Модель'){
-				this.selects.types.checked = undefined;
-				this.selects.values.checked = undefined;
-				this.selects.years.checked = undefined;
+			if(index == 'names'){
+				this.dropFilters();
 			}
 			this.filterData();
-			if(this.carList.length === 1 && this.selects.reglamentCount.checked){
-				let index = this.selects.reglamentCount.values.indexOf(this.selects.reglamentCount.checked);
-				if(this.selects.reglamentCount.checked == 'ТО-0'){
-					this.price = 'Бесплатно';
-				} else {
-					this.price = this.carList[0].prices[index] + ' руб';
-				}
+			if(this.carList.length === 1){
+				let car = this.carList[0];
+				this.tab ? this.setReglamentPrice(car) : this.setOilPrice(car);
 			} else {
 				this.price = undefined;
 			}
 			category.isOpen = false;
 		},
 		filterData(){
-			let carList = this.jsonData.filter(car => {
+			this.carList = this.jsonData.filter(car => {
 				return (this.selects.names.checked ? car.name == this.selects.names.checked : true) &&
 				(this.selects.values.checked ? car.value == this.selects.values.checked : true) &&
 				(this.selects.types.checked ? car.type == this.selects.types.checked : true) &&
 				(this.selects.years.checked ? car.year == this.selects.years.checked : true);
 			});
-			this.carList = carList;
 			this.selectsValue();
-
 		},
 		selectsValue(){
 			let setValues = new Set();
@@ -157,6 +163,20 @@ export default {
 			this.selects.values.values = [...setValues];
 			this.selects.years.values = [...setYears];
 		},
+		dropFilters(){
+			this.selects.types.checked = undefined;
+			this.selects.values.checked = undefined;
+			this.selects.years.checked = undefined;
+		},
+		setReglamentPrice(car){
+			if(this.selects.reglamentCount.checked){
+				let index = this.selects.reglamentCount.values.indexOf(this.selects.reglamentCount.checked);
+				this.price = car.prices[index];
+			}
+		},
+		setOilPrice(car){
+			this.price = car.oil;
+		}
 	}
 }
 

@@ -26,12 +26,24 @@
     justify-content: space-between;
     padding: 1rem 0;
 }
-
-.feedback__form-input{
+.input-group{
     width: 48%;
+    text-align: left;
+}
+.feedback__form-input{
+    width: 100%;
     padding: 1rem;
     font-weight: 500;
     background-color: #ECECEC;
     outline: none;
     border: none;
+    font-family: "HyundaiText", Arial, Helvetica, sans-serif;
+    font-size: 1.125rem;
+}
+
+.validation{
+    text-align: left;
+    color: red;
+    padding-top: 0.5rem;
+    width: 100%;
 }

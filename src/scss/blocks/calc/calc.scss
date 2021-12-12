@@ -28,6 +28,10 @@
     color: #DBDBDB;
     font-weight: 500;
     margin-right: 2.5rem;
+    label{
+        cursor: pointer;
+    }
+
 }
 
 .calc-filter {
@@ -52,6 +56,9 @@
 
 .calc-filter__tabs-item {
     border-bottom: 1px solid #E8E8E8;
+    &.hidden{
+        display: none;
+    }
     .category-line {
         padding: 2.5rem 1rem;
         text-transform: capitalize;
@@ -61,6 +68,10 @@
         &.open{
             background-color: #EEEEEE;
         }
+        span{
+            font-weight: 500;
+        }
+
     }
 
 

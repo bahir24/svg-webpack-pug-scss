@@ -8,6 +8,9 @@
     .header__bottom{
         background-color: rgba(246, 246, 246, 1);
         color: #363636;
+        .nav__link{
+            border-color: #363636;
+        }
     }
 }
 
@@ -33,18 +36,14 @@
 
 }
 
-.header__content {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
+// .header__content {
+// }
 
 .header__top-center {
     display: flex;
-    justify-content: space-around;
+    span{
+        margin-right: 2.375rem;
+    }
 }
 
 .logo__icon {
@@ -94,7 +93,7 @@
 }
 
 .nav__link {
-    text-decoration: underline;
+    border-bottom: 1px solid #fff;
 }
 
 .test-section {
@@ -104,6 +103,7 @@
 .left__block {
     color: #fff;
     width: 100%;
+    padding-top: 12rem;
 }
 
 .left__block-head {

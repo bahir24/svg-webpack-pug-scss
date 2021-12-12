@@ -11,6 +11,10 @@ section.feedback(id="feedback")
 				|восстановлению и улучшению Вашего Hyundai!
 			form.feedback__form(action="message.php" method="post")
 				.feedback__form-inputs
-					input.feedback__form-input(type="text" name="name" placeholder="Напишите как вас зовут")
-					input.feedback__form-input(type="text" name="phone"  placeholder="Напишите Ваш номер телефона")
-				button.hyundai-button.hyundai-button--orange(type='submit data-target="feedbackModal") Обратный звонок
+					.input-group
+						input.feedback__form-input(type="text" name="name" placeholder="Напишите как вас зовут")
+						span.validation
+					.input-group
+						input.feedback__form-input(type="text" name="phone"  placeholder="Напишите Ваш номер телефона")
+						span.validation
+				button.hyundai-button.hyundai-button--orange(type='submit') Обратный звонок

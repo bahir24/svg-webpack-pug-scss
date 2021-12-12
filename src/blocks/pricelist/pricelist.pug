@@ -22,8 +22,8 @@ section.pricelist(id="pricelist")
 					li.catalog-list__item
 						label(for='privilege') Привилегии для клиентов
 			.pricelist__right
-				.prices
-					input.radio-hidden(type="radio" name="pricelist" id="tyres" checked)
+				form.prices(name="pricelist")
+					input.radio-hidden(type="radio" name="pricelist" id="tyres" value="Шиномонтаж" checked)
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Развал—схождение
@@ -34,7 +34,7 @@ section.pricelist(id="pricelist")
 						li.prices__item
 							span.prices__item-name Сезонное хранение колёс
 							span.prices__item-price 3000
-					input.radio-hidden(type="radio" name="pricelist" id="fluid")
+					input.radio-hidden(type="radio" name="pricelist" id="fluid" value="Замена эксплуатационных жидкостей")
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Замена масла в АКПП ( полная - аппаратная )
@@ -54,7 +54,7 @@ section.pricelist(id="pricelist")
 						li.prices__item
 							span.prices__item-name Перезаправка кондиионера с индикатором утечки
 							span.prices__item-price.prices__price--from 3390
-					input.radio-hidden(type="radio" name="pricelist" id="brakes")
+					input.radio-hidden(type="radio" name="pricelist" id="brakes" value="Ремонт тормозной системы")
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Замена тормозных колодок, дисковые тормоза
@@ -71,7 +71,7 @@ section.pricelist(id="pricelist")
 						li.prices__item
 							span.prices__item-name Замена тормозных колодок и дисков одна ось
 							span.prices__item-price 4480
-					input.radio-hidden(type="radio" name="pricelist" id="suspension")
+					input.radio-hidden(type="radio" name="pricelist" id="suspension" value="Ремонт подвески")
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Развал схождение, одна ось проверка и регулирвока
@@ -85,7 +85,7 @@ section.pricelist(id="pricelist")
 						li.prices__item
 							span.prices__item-name Ступичный подшипник - замена
 							span.prices__item-price 1500
-					input.radio-hidden(type="radio" name="pricelist" id="carwash")
+					input.radio-hidden(type="radio" name="pricelist" id="carwash" value="Автомойка")
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Технологическая с обезжириванием
@@ -99,7 +99,7 @@ section.pricelist(id="pricelist")
 						li.prices__item
 							span.prices__item-name Мойка премиум
 							span.prices__item-price 2000
-					input.radio-hidden(type="radio" name="pricelist" id="autoelectrics")
+					input.radio-hidden(type="radio" name="pricelist" id="autoelectrics" value='Ремонт электрооборудовани')
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Регулирвока фар
@@ -110,7 +110,7 @@ section.pricelist(id="pricelist")
 						li.prices__item
 							span.prices__item-name Замена лампочки
 							span.prices__item-price.prices__price--from 280
-					input.radio-hidden(type="radio" name="pricelist" id="everyday")
+					input.radio-hidden(type="radio" name="pricelist" id="everyday" value="Повседневное")
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Осмотр ходовой
@@ -118,11 +118,11 @@ section.pricelist(id="pricelist")
 						li.prices__item
 							span.prices__item-name Считывание ошибок
 							span.prices__item-price 2240
-					input.radio-hidden(type="radio" name="pricelist" id="privilege")
+					input.radio-hidden(type="radio" name="pricelist" id="privilege" value='Привилегии для клиентов')
 					ul.prices__list
 						li.prices__item
 							span.prices__item-name Полная диагностика А/М под окончание гарантии
 								br
 								|( 0 р. При ремонте у нас по результатам диагностики )
 							span.prices__item-price 500
-					button.hyundai-button(type='button' data-target="feedbackModal") Заказать звонок
+					button.hyundai-button(type='button' data-target="feedbackModal" value="Сервис" name="service") Записаться на сервис

@@ -12,5 +12,11 @@
 @import 'scss/blocks/slider-photo/slider-photo.scss';
 @import 'scss/blocks/contacts/contacts.scss';
 @import 'scss/blocks/footer/footer.scss';
+@import 'scss/blocks/modal/modal.scss';
 @import 'scss/blocks/feedback/feedback.scss';
 
+.body-blocked{
+.header__bottom{
+    opacity: 0;
+}
+}

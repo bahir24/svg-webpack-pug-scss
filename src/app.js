@@ -9,6 +9,106 @@ new Vue({
  render: h => h(Calculator),
 });
 
+var pageObject = {
+    init(){
+        if(this.close()){
+            this.listeners.closeListener(this);
+        };
+        if(this.modalButtons){
+            this.listeners.buttonListener(this);
+        };
+        if(this.modalForm()){
+            this.listeners.formSubmitListener(this);
+        };
+    },
+    listeners:{
+        closeListener(mainObject){
+            mainObject.close().addEventListener('click', ()=> mainObject.closeModal());
+        },
+        buttonListener(mainObject){
+            mainObject.modalButtons.forEach(button =>{
+                button.addEventListener('click', (event) => mainObject.showModal(button));
+            });
+        },
+        formSubmitListener(mainObject){
+            mainObject.modalForm().addEventListener('submit', (event)=> mainObject.modalFormSubmit());
+        },
+    },
+
+    modal(){
+        return document.querySelector('.modal');
+    },
+    close(){
+        return this.modal().querySelector('.close');
+    },
+    modalForm(){
+        return this.modal().querySelector('form');
+    },
+    pricelistForm(){
+        return document.forms.pricelist;
+    },
+    validation(){
+        let validationFields = this.modal().querySelectorAll('.validation');
+        let validationElements = {};
+        validationFields.forEach((element, index) => {
+            let name = element.parentNode.querySelector('input').name;
+            validationElements[name] = element;
+        });
+        return validationElements;
+    },
+    modalButtons: document.querySelectorAll('[data-target="feedbackModal"]'),
+    body: document.querySelector('body'),
+
+
+    modalFormSubmit(){
+        event.preventDefault();
+        let formData = new FormData(this.modalForm());
+        fetch('/backend/message.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(json => {
+            this.clearValidation();
+            if(json.errors){
+                this.fillValidation(json.errors);
+            }
+        });
+
+    },
+    closeModal(){
+        this.modal().classList.add('modal-hide');
+        this.body.classList.remove('body-blocked');
+        this.modalForm().reset();
+        this.clearValidation();
+    },
+    showModal(button){
+        event.preventDefault();
+        this.modal().classList.remove('modal-hide');
+        this.body.classList.add('body-blocked');
+        this.addDataToModal(button);
+    },
+    addDataToModal(button){
+        let input = document.createElement('input');
+        input.type = "hidden";
+        input.name = button.name;
+        input.value = (button.name == 'service') ? this.pricelistForm().pricelist.value : button.value;
+        this.modalForm().appendChild(input);
+    },
+    fillValidation(errors){
+        Object.keys(errors).forEach(errorKey => {
+            this.validation()[errorKey].textContent = errors[errorKey];
+        });
+    },
+    clearValidation(){
+        Object.values(this.validation()).forEach(msg => {
+            msg.textContent = '';
+        });
+    }
+
+};
+pageObject.init();
+
 
 var headerHeight = document.querySelector('.header__wrapper').offsetHeight;
 var scrollNavs = document.querySelectorAll('.nav__link');
@@ -25,7 +125,7 @@ scrollNavs.forEach(scrollNav =>{
 var headerSticky = document.querySelector('header');
 window.addEventListener('scroll', function () {
     let bodyOffset = document.querySelector('body').getBoundingClientRect().top;
-    if (bodyOffset < 0) {
+    if (bodyOffset < -1) {
         headerSticky.classList.add('header-show');
     } else {
         headerSticky.classList.remove('header-show');
@@ -56,6 +156,7 @@ new Splide( '.slider-stranges', {
 new Splide( '.slider-photo', {
     padding: { right: 200 },
     type   : 'loop',
+    pagination: false,
     classes: {
 		arrows: 'splide__arrows photo-arrows container',
 		arrow : 'splide__arrow stranges-arrow',
