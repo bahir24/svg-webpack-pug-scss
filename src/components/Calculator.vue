@@ -17,7 +17,7 @@
                     <div class="calc-result">
                         <span class="calc-result__head">Стоимость</span>
                         <p class="calc-result__price">{{ price ? price : minPrice }}</p>
-                        <button class="hyundai-button hyundai-button--orange" type="button">Заказать звонок</button>
+                        <button class="hyundai-button hyundai-button--orange" @click="openModal()" type="button">Заказать звонок</button>
                     </div>
                 </div>
                 <div class="calc-filter__right">
@@ -109,14 +109,29 @@ export default {
 	computed: {
   	},
 	methods: {
+		openModal(){
+			let modal = document.querySelector('.modal');
+			let form = modal.querySelector('form');
+			modal.classList.remove('modal-hide');
+			document.querySelector('body').classList.add('body-blocked');
+			let selectsKeys = Object.keys(this.selects);
+			selectsKeys.forEach(selectKey => {
+				let input = document.createElement('input');
+				input.type = 'hidden';
+				input.name = selectKey;
+				input.value = this.selects[selectKey].checked ? this.selects[selectKey].checked : 'Не выбрано';
+				form.appendChild(input);
+			})
+
+		},
 		switchTab(){
 			this.tab = !this.tab;
 			this.selects.reglamentCount.show = this.tab;
 			this.price = undefined;
-			if(this.tab){
-				this.minPrice = '7 027 руб'
-			} else {
-				this.minPrice = '2 999 руб'
+			this.minPrice = this.tab ? '7 027 руб' : '2 999 руб';
+			if(this.carList.length === 1){
+				let car = this.carList[0];
+				this.tab ? this.setReglamentPrice(car) : this.setOilPrice(car);
 			}
 		},
 		categoryOpen(category){

@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     opacity: 1;
     transition: opacity .3s;
     z-index: 1;
@@ -65,4 +66,8 @@
 
 .modal__agreeement-text{
     max-width: 60%;
+}
+
+.success{
+    color: #fff;
 }
