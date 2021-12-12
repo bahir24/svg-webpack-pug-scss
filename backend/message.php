@@ -31,14 +31,11 @@ if (count($errors)) {
     return;
 } else {
     $to = '<7074033@gmail.com>';
-
-    $subject = 'Test';
+    $subject = "Заявка с сайта сервиса Hyundai $_SERVER[HTTP_HOST]";
     $message = sendEmail($_POST);
     $headers  = "Content-type: text/html; charset=UTF-8 \r\n";
-    $headers .= "From: От кого письмо <7074033@gmail.com>\r\n";
-    $headers .= "Reply-To: <7074033@gmail.com>\r\n";
-
-    // Отправляем
+    $headers .= "From: От кого письмо $to\r\n";
+    $headers .= "Reply-To: $to\r\n";
     $success = mail($to, $subject, $message, $headers);
     if (!$success) {
         $errorMessage = error_get_last()['message'];
@@ -49,10 +46,6 @@ if (count($errors)) {
     return;
 }
 
-
-
-
-$localizeArr = [];
 function sendEmail(array $data)
 {
     $keyMatches = [
@@ -73,8 +66,6 @@ function sendEmail(array $data)
     foreach ($data as $key => $field) {
         $message .= $keyMatches[$key] . ': ' . $field . '<br/>';
     }
+    $message .= 'Время отправки: ' . date("Y-m-d H:i:s") . '<br/>';
     return $message;
 }
-
-
-// print_r($localizeArr);
