@@ -27,10 +27,14 @@ if (md5($_POST['passw']) == $md) {
         }
     }
     $json = json_encode(['offerData' => $arrResult]);
-    file_put_contents("data.json", $json);
-    header("Location: http://$_SERVER[HTTP_HOST]", true, 200);
+    try {
+        file_put_contents("data.json", $json);
+    } catch (\Exception $exception) {
+        echo $th;
+    }
+    header("Location: https://$_SERVER[HTTP_HOST]", true, 200);
 } else {
-    header("Location: http://$_SERVER[HTTP_HOST]/backend/auth.html", true, 301);
+    header("Location: https://$_SERVER[HTTP_HOST]/auth.html", true, 301);
 }
 
 // P%R~Jy4YkIkH

@@ -118,8 +118,17 @@ export default {
 			selectsKeys.forEach(selectKey => {
 				let input = document.createElement('input');
 				input.type = 'hidden';
-				input.name = selectKey;
-				input.value = this.selects[selectKey].checked ? this.selects[selectKey].checked : 'Не выбрано';
+
+				if(selectKey == 'reglamentCount' && !this.tab){
+					input.name = 'Oil';
+					input.value = this.price;
+				} else {
+					input.name = selectKey;
+					input.value = this.selects[selectKey].checked ? this.selects[selectKey].checked : 'Не выбрано';
+				}
+
+
+
 				form.appendChild(input);
 			})
 

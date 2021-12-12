@@ -66,9 +66,9 @@ var pageObject = {
     modalFormSubmit(){
         event.preventDefault();
         let formData = new FormData(this.modalForm());
-        fetch('/backend/message.php', {
+        fetch('/message.php', {
             method: 'POST',
-            body: formData
+            body: formData,
         })
         .then(response => response.json())
         .then(json => {
