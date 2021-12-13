@@ -83,16 +83,14 @@
     max-height: 0;
     opacity: 0;
     transition: max-height .2s, opacity .1s ease-out .2s, border-bottom .2s ease .3s;
-    z-index: -10;
     padding: 0;
 }
 
 .radio-hidden:checked + .prices__list{
     border-bottom: 1px solid rgba(255, 255, 255, 1);
-    max-height: 100vh;
+    max-height: 200vh;
     opacity: 1;
     height: auto;
-    z-index: 0;
     margin-bottom: auto;
 }
 

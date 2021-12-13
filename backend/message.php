@@ -36,9 +36,14 @@ if (count($errors)) {
     $headers  = "Content-type: text/html; charset=UTF-8 \r\n";
     $headers .= "From: От кого письмо $to\r\n";
     $headers .= "Reply-To: $to\r\n";
-    $success = mail($to, $subject, $message, $headers);
+    try {
+        $success = mail($to, $subject, $message, $headers);
+    } catch (\Exception $ex) {
+        return json_encode($ex);
+    }
+
     if (!$success) {
-        $errorMessage = error_get_last()['message'];
+        $errorMessage = error_get_last();
         echo json_encode($errorMessage);
     } else {
         echo json_encode(['success' => 'Мы получили ваше сообщение. Наши менеджеры скоро свяжутся с вами.']);

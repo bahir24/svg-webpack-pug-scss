@@ -167,17 +167,22 @@ var feedbackForm = {
         })
         .then(response => response.json())
         .then(json => {
-            this.clearValidation();
-            if(json.errors){
-                this.fillValidation(json.errors);
-            } else if(json.success){
-                this.success().textContent = json.success;
-                setTimeout(()=>{
-                    this.clearSuccess();
-                }, 2000);
-            } else {
-                console.log(json);
+            if(json){
+                // console.log(json);
+                this.clearValidation();
+                if(json.errors){
+                    console.log(json.errors);
+                    this.fillValidation(json.errors);
+                } else if(json.success){
+                    this.success().textContent = json.success;
+                    setTimeout(()=>{
+                        this.clearSuccess();
+                    }, 2000);
+                } else {
+                    console.log(json);
+                }
             }
+
         });
 
     },

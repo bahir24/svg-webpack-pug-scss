@@ -1,17 +1,13 @@
 .header {
     height: 85vh;
-    position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), center center/cover url('img/background/hero.png') no-repeat;
 }
-
-
-
 .header__wrapper {
     position: fixed;
-    width: 100%;
-    z-index: 10;
-    padding: 25px 0 10px;
-    background-color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
 }
 
 .header__top {
@@ -19,6 +15,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
+    padding: 15px 0 5px;
 }
 .header__top-left{
     width: 100%;
@@ -60,7 +57,7 @@
     border: none;
     cursor: pointer;
     font-size: .875rem;
-    z-index: 9;
+    // z-index: 9;
 
 
     &--orange{
@@ -150,6 +147,7 @@
 
 .header__bottom{
     background-color: #fff;
+    padding: 10px;
 }
 .header__nav-mobile{
     visibility: hidden;
@@ -159,7 +157,7 @@
     transition: max-height .2s;
     &.menu-open{
         visibility:visible;
-        max-height: 100vh;
+        max-height: 200vh;
     }
 }
 .nav-mobile{
@@ -169,6 +167,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 18px 25px;
+    overflow-y: scroll;
 }
 .nav-mobile__buttons{
     display: flex;
@@ -184,7 +183,7 @@
     color: #000;
 }
 .header__button-mobile{
-    margin-top: 10px;
+    // margin-top: 10px;
 }
 
 .header__buttons-mobile{

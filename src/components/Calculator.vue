@@ -15,7 +15,9 @@
                         <p class="calc-result__price">{{ price ? price : minPrice }}</p>
                         <button class="hyundai-button hyundai-button--orange hyundai-button--desktop" @click="openModal()" type="button">Заказать звонок</button>
                     </div>
-					<button class="hyundai-button hyundai-button--mobile hyundai-button--dark" @click="openModal()" type="button">Заказать звонок</button>
+					<div class="calc-button">
+						<button class="hyundai-button hyundai-button--mobile hyundai-button--dark" @click="openModal()" type="button">Заказать звонок</button>
+					</div>
                 </div>
                 <div class="calc-filter__right">
                     <div class="reglament-tab">

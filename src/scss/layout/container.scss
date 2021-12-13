@@ -1,6 +1,7 @@
 .container {
-    width: calc(100vw - 20px);
+    width: 100%;
     margin: 0 auto;
+    max-width: 100%;
 }
 
 @each $screen, $size in $container {
