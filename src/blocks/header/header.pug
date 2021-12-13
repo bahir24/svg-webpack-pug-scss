@@ -5,17 +5,44 @@ header.header
 	.header__wrapper
 		.header__top
 			.container
-				.header__top-left
-					a.logo(href="/")
-						+icon('logo')(class="logo__icon")
-				.header__top-center
-					span Пн-Вс с 8:00 до 22:00
-					address ул. Торговая, д. 22
-				.header__top-right
-					a.header__phone(href='tel:88122202158') +7 (812) 220-21-58
-					button.hyundai-button.hyundai-button--orange(type='button' data-target="feedbackModal" name="block" value="Хедер") Заказать звонок
+				.header__menu
+					.header__top-left
+						a.logo(href="/")
+							+icon('logo')(class="logo__icon")
+						.header__buttons-mobile
+							a.phone-button(href='tel:88122202158')
+								+icon('phone')(class="phone__icon")
+							button.burger-button
+								+icon('burger')(class="burger__icon")
+								+icon('close')(class="close__icon")
+					.header__top-center
+						span Пн-Вс с 8:00 до 22:00
+						address ул. Торговая, д. 22
+					.header__top-right
+						a.header__phone(href='tel:88122202158') +7 (812) 220-21-58
+						button.hyundai-button.hyundai-button--orange(type='button' data-target="feedbackModal" name="block" value="Хедер") Заказать звонок
 		.header__bottom
 			.container
+				.header__button-mobile
+					button.hyundai-button.hyundai-button--large.hyundai-button--border(type='button' data-target="feedbackModal" name="block" value="Мобильный хедер") Записаться на сервис
+				.header__nav-mobile
+					nav.nav-mobile
+						ul.nav-mobile__list
+							li.nav-mobile__list-item
+								a.nav-mobile__link(href='#' data-section="offers") Акции
+							li.nav-mobile__list-item
+								a.nav-mobile__link(href='#' data-section="offers") Прохождение ТО
+							li.nav-mobile__list-item
+								a.nav-mobile__link(href='#' data-section="offers") Масляный сервис
+							li.nav-mobile__list-item
+								a.nav-mobile__link(href='#' data-section="feedback") Услуги сервиса
+							li.nav-mobile__list-item
+								a.nav-mobile__link(href='#' data-section="pricelist") Схема проезда
+							li.nav-mobile__list-item
+								a.nav-mobile__link(href='#' data-section="pricelist") Контакты
+						.nav-mobile__buttons
+							a.hyundai-button.hyundai-button--link.hyundai-button--border(href='tel:88122202158') +7 (812) 220‒21‒58
+							button.hyundai-button.hyundai-button--border(type='button' data-target="feedbackModal" name="block" value="Мобильное меню") Заказать звонок
 				nav.nav
 					ul.nav__list
 						li.nav__list-item

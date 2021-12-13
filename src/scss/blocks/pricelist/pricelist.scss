@@ -94,8 +94,17 @@
     justify-content: space-between;
 }
 
-.prices__item-price::after{
-    content: ' руб';
+
+.prices__item-name{
+    padding-right: 1rem;
+    white-space: pre-line;
+}
+
+.prices__item-price{
+    white-space: nowrap;
+    &::after{
+        content: ' руб';
+    }
 }
 
 .prices__price--from::before{
