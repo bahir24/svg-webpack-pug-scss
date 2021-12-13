@@ -2,14 +2,10 @@
   <div class="container" v-if="!loading">
             <ul class="calc__tabs">
                 <li class="calc__tabs-item" v-bind:class="{ active : tab }" @click="switchTab()">
-                    <label for="reglament-tab-input">
-                        Прохождение ТО
-                    </label>
+					Прохождение ТО
                 </li>
                 <li class="calc__tabs-item" v-bind:class="{ active : !tab }" @click="switchTab()">
-                    <label for="oil-tab-input">
-                        Масляный сервис
-                    </label>
+					Масляный сервис
                 </li>
             </ul>
             <div class="calc-filter">
@@ -17,8 +13,9 @@
                     <div class="calc-result">
                         <span class="calc-result__head">Стоимость</span>
                         <p class="calc-result__price">{{ price ? price : minPrice }}</p>
-                        <button class="hyundai-button hyundai-button--orange" @click="openModal()" type="button">Заказать звонок</button>
+                        <button class="hyundai-button hyundai-button--orange hyundai-button--desktop" @click="openModal()" type="button">Заказать звонок</button>
                     </div>
+					<button class="hyundai-button hyundai-button--mobile hyundai-button--dark" @click="openModal()" type="button">Заказать звонок</button>
                 </div>
                 <div class="calc-filter__right">
                     <div class="reglament-tab">

@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 7.5rem 0;
+    padding: 2.5rem 0;
 }
 
 .feedback__head{
@@ -25,21 +25,24 @@
 .feedback__form-inputs{
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     padding: 1rem 0;
 }
 .input-group{
-    width: 48%;
     text-align: left;
-}
-.feedback__form-input{
-    width: 100%;
-    padding: 1rem;
-    font-weight: 500;
-    background-color: #ECECEC;
-    outline: none;
-    border: none;
-    font-family: "HyundaiText", Arial, Helvetica, sans-serif;
-    font-size: 1.125rem;
+    margin-bottom: 10px;
+    .feedback__form-input{
+        border: 1px solid #8A8A8A;
+        color: #7D7D7D;
+        width: 100%;
+        padding: 1rem;
+        font-weight: 500;
+        background-color: #ECECEC;
+        outline: none;
+        font-family: "HyundaiText", Arial, Helvetica, sans-serif;
+        font-size: 1.125rem;
+        border-radius: 10px;
+    }
 }
 
 .validation{
@@ -47,4 +50,40 @@
     color: red;
     padding-top: 0.5rem;
     width: 100%;
+}
+
+@media (min-width: 656px) {
+    .feedback__content{
+        padding: 3.5rem 0;
+    }
+}
+@media (min-width: 848px) {
+    .feedback__form-inputs{
+        flex-direction: row;
+    }
+    .feedback__content{
+        padding: 4.5rem 0;
+    }
+    .input-group{
+        width: 48%;
+        margin-bottom: unset;
+        .feedback__form-input{
+            color: #A0A0A0;
+            background-color: #ECECEC;
+            outline: none;
+            border: none;
+            font-family: "HyundaiText", Arial, Helvetica, sans-serif;
+            border-radius: none;
+        }
+    }
+}
+@media (min-width: 1032px) {
+    .feedback__content{
+        padding: 6.5rem 0;
+    }
+}
+@media (min-width: 1280px) {
+    .feedback__content{
+        padding: 7.5rem 0;
+    }
 }

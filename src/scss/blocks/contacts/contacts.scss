@@ -1,10 +1,14 @@
 .contacts {
     display: flex;
+    flex-direction: column-reverse;
 }
 
-.contacts__left,
+
 .contacts__right {
-    width: 50%;
+    height: 400px
+}
+.contacts__left{
+    height: 300px
 }
 
 .contacts__left {
@@ -12,6 +16,8 @@
     color: #fff;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -31,9 +37,9 @@ $size in $container {
     font-size: 1.25rem;
 }
 
-.addres__left,
+
 .addres__right {
-    width: 50%;
+display: none;
 }
 
 .addres__left {
@@ -67,7 +73,25 @@ $size in $container {
 }
 
 
-@media (min-width: 848px) {}
+@media (min-width: 848px) {
+    .contacts {
+        flex-direction: row;
+    }
+
+    .contacts__left,
+    .contacts__right {
+        height: unset;
+        width: 50%;
+    }
+
+    .addres__left,
+    .addres__right {
+        width: 50%;
+    }
+    .addres__right{
+        display: block;
+    }
+}
 
 @media (min-width: 1032px) {
     .contacts__left {

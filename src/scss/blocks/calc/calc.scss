@@ -14,7 +14,7 @@
 }
 
 .calc__tabs {
-    padding: 2.5rem 0;
+    padding: 2.5rem 10px;
     border-bottom: 1px solid #AAAAAA;
     display: flex;
 }
@@ -24,23 +24,24 @@
 }
 
 .calc__tabs-item {
-    font-size: 2.5rem;
+    font-size: .875rem;
     color: #DBDBDB;
     font-weight: 500;
-    margin-right: 2.5rem;
-    label{
-        cursor: pointer;
-    }
-
+    margin-right: 1.25rem;
+    cursor: pointer;
 }
 
 .calc-filter {
     display: flex;
+    flex-direction: column-reverse;
 }
 
-.calc-filter__right,
+
 .calc-filter__left {
-    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
 }
 
 .calc-dropdown {
@@ -59,22 +60,24 @@
     &.hidden{
         display: none;
     }
-    .category-line {
-        padding: 2.5rem 1rem;
-        text-transform: capitalize;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        &.open{
-            background-color: #EEEEEE;
-        }
-        span{
-            font-weight: 500;
-        }
 
+
+
+
+}
+
+.category-line {
+    padding: 2.5rem 1rem;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &.open{
+        background-color: #EEEEEE;
     }
-
-
+    span{
+        font-weight: 500;
+    }
 
 }
 
@@ -131,7 +134,57 @@
     font-size: 1.25rem;
 }
 
+.splide__arrows{
+    display: none;
+}
+
 .calc-result__price {
     margin-bottom: .6rem;
     font-size: 2.5rem;
+}
+
+@media (min-width: 656px) {
+    .calc__tabs-item {
+        font-size: 1rem;
+        margin-right: 1rem;
+
+    }
+}
+@media (min-width: 848px) {
+    .calc__tabs{
+        padding: 2.5rem 0;
+    }
+    .calc__tabs-item {
+        font-size: 1.5rem;
+        margin-right: 1.5rem;
+
+    }
+    .calc-filter {
+        flex-direction: row;
+    }
+    .calc-filter__right,
+    .calc-filter__left {
+        width: 50%;
+
+    }
+    .calc-filter__left {
+        padding: unset;
+    }
+    .splide__arrows{
+        display: block;
+    }
+}
+@media (min-width: 1032px) {
+    .calc__tabs-item {
+        font-size: 2rem;
+        margin-right: 2rem;
+
+    }
+}
+@media (min-width: 1280px) {
+    .calc__tabs-item {
+        font-size: 2.5rem;
+        margin-right: 2.5rem;
+
+    }
 }

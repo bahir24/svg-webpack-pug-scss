@@ -201,6 +201,9 @@ var feedbackForm = {
 feedbackForm.init();
 
 
+
+
+
 var headerHeight = document.querySelector('.header__wrapper').offsetHeight;
 var scrollNavs = document.querySelectorAll('.nav__link');
 scrollNavs.forEach(scrollNav =>{
@@ -213,7 +216,34 @@ scrollNavs.forEach(scrollNav =>{
 });
 
 
-var headerSticky = document.querySelector('header');
+
+
+var mobileScrollNavs = document.querySelectorAll('.nav-mobile__link');
+if(mobileScrollNavs){
+    mobileScrollNavs.forEach(mobileScrollNav =>{
+        mobileScrollNav.addEventListener('click', function () {
+            event.preventDefault();
+            let scrollToSection = document.querySelector('.' + this.dataset.section);
+            let sectionOffset = scrollToSection.offsetTop - headerHeight;
+            window.scrollTo(0, sectionOffset);
+            switchMobileMenu();
+        });
+    });
+}
+
+var mobileButtons = document.querySelector('.mobile-buttons__wrapper').childNodes;
+
+mobileButtons.forEach(btn =>{
+    btn.addEventListener('click', function () {
+        event.preventDefault();
+        let scrollToSection = document.querySelector('.' + this.dataset.section);
+        let sectionOffset = scrollToSection.offsetTop - headerHeight;
+        window.scrollTo(0, sectionOffset);
+    });
+});
+
+
+var headerSticky = document.querySelector('.header__bottom');
 window.addEventListener('scroll', function () {
     let bodyOffset = document.querySelector('body').getBoundingClientRect().top;
     if (bodyOffset < -1) {
@@ -231,6 +261,26 @@ catalogListItems.forEach(catalogListItem => {
     })
 });
 
+var catalogMobileDropdowns = document.querySelectorAll('.prices-mobile__dropdown');
+catalogMobileDropdowns.forEach(dropdown => {
+    dropdown.addEventListener('click', function(){
+        console.log(this);
+        document.querySelector('.prices-mobile__dropdown.active').classList.remove('active');
+        this.classList.add('active');
+    })
+});
+
+
+
+var burgerButton = document.querySelector('.burger-button');
+var mobileMenu = document.querySelector('.header__nav-mobile');
+burgerButton.addEventListener('click', function(){
+    switchMobileMenu();
+});
+function switchMobileMenu(){
+    burgerButton.classList.toggle('burger-menu-open');
+    mobileMenu.classList.toggle('menu-open');
+}
 
 import Splide from '@splidejs/splide';
 

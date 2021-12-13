@@ -1,9 +1,35 @@
 .footer{
-    padding: 4rem 0;
+    padding: 1.25rem 0;
     background-color: #000;
 }
 
 .footer__policy{
     color: #9E9E9E;
     text-decoration: underline;
+}
+
+@media (min-width: 656px) {
+    .calc__tabs-item {
+        font-size: 1rem;
+        margin-right: 1rem;
+
+    }
+    .footer{
+        padding: 1.5rem 0;
+    }
+}
+@media (min-width: 848px) {
+    .footer{
+        padding: 2rem 0;
+    }
+}
+@media (min-width: 1032px) {
+    .footer{
+        padding: 3rem 0;
+    }
+}
+@media (min-width: 1280px) {
+    .footer{
+        padding: 4rem 0;
+    }
 }

@@ -57,41 +57,52 @@
     position: absolute;
 }
 
-.pricelist__left,
-.pricelist__right{
-    width: 50%;
-}
+
 
 .prices{
-    background-color: #003469;
-    padding: 2.5rem;
+    padding: 10px;
     border-radius: 10px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    background: none;
+}
+.pricelist__left{
+    display: none;
 }
 .pricelist__right{
-    color: #fff;
+    width: 100%;
 }
 
 .prices__list{
-    border-bottom: 1px solid #FFFFFF;
-    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
     width: 100%;
-    display: none;
-
+    height: 0;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .2s, opacity .1s ease-out .2s, border-bottom .2s ease .3s;
+    z-index: -10;
+    padding: 0;
 }
 
 .radio-hidden:checked + .prices__list{
-    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+    max-height: 100vh;
+    opacity: 1;
+    height: auto;
+    z-index: 0;
+    margin-bottom: auto;
 }
 
 .prices__item{
     padding: 1.25rem 0;
     display: flex;
     justify-content: space-between;
+    &--mobile{
+        display: block;
+    }
 }
 
 
@@ -109,5 +120,67 @@
 
 .prices__price--from::before{
     content: 'от ';
+}
+
+.prices-mobile__dropdown{
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    &.active{
+        .toggle{
+            transform: rotate(225deg);
+        }
+    }
+}
+.service-line{
+    padding: 1.25rem 0;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+@media (min-width: 656px) {
+    // .prices{
+    //     padding: 1rem;
+    // }
+}
+@media (min-width: 848px) {
+    .prices{
+        background-color: #003469;
+        padding: 1rem;
+    }
+    .pricelist__left,
+    .pricelist__right{
+        width: 50%;
+    }
+    .pricelist__left{
+        display: block;
+    }
+    .pricelist__right{
+        color: #fff;
+    }
+    .prices-mobile__dropdown{
+        display: none;
+    }
+    .radio-hidden:checked + .prices__list{
+        padding: 2.5rem 0;
+    }
+    .prices__item{
+        &--mobile{
+            display: none;
+        }
+    }
+}
+@media (min-width: 1032px) {
+    .prices{
+        padding: 1.5rem;
+    }
+}
+@media (min-width: 1280px) {
+    .prices{
+        padding: 2rem;
+    }
+
 }
 
