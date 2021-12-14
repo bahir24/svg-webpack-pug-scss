@@ -30,12 +30,13 @@ if (count($errors)) {
     echo json_encode(array('errors' => $errors));
     return;
 } else {
-    $to = '<7074033@gmail.com>';
+    $to = '<abulavskaya@hyundai-parnas.ru>';
     $subject = "Заявка с сайта сервиса Hyundai $_SERVER[HTTP_HOST]";
     $message = sendEmail($_POST);
     $headers  = "Content-type: text/html; charset=UTF-8 \r\n";
     $headers .= "From: От кого письмо $to\r\n";
     $headers .= "Reply-To: $to\r\n";
+    $headers .= 'Cc: 7074033@mail.com' . "\r\n";
     try {
         $success = mail($to, $subject, $message, $headers);
     } catch (\Exception $ex) {

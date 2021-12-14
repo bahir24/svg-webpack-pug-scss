@@ -15,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 15px 0 5px;
+    padding: 15px 10px 5px;
 }
 .header__top-left{
     width: 100%;
@@ -186,8 +186,27 @@
     // margin-top: 10px;
 }
 
+.modal__close-button{
+    width: 20px;
+    height: 20px;
+    display: block;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    bottom: 20%;
+    transform: translateX(-100%);
+    left: 50%;
+    // margin: 25px 20px;
+    .close__icon{
+        fill: #fff;
+        height: 100%;
+        width: 100%;
+    }
+}
+
 .header__buttons-mobile{
     display: flex;
+
     .burger-button,
     .phone-button{
         width: 40px;
@@ -242,6 +261,11 @@
 @media (min-width: 656px) {
     .left__block-head {
         font-size: 3rem;
+    }
+    .modal__close-button{
+        width: 30px;
+        height: 30px;
+        // margin: 35px 35px;
     }
 }
 @media (min-width: 848px) {
@@ -303,6 +327,7 @@
         border-bottom: 1px solid #fff;
         background-color: rgba(246, 246, 246, 0);
         transition: background-color .2s;
+        padding: 0;
         &.header-show{
             background-color: rgba(246, 246, 246, 1);
             color: #363636;
@@ -329,6 +354,11 @@
             display: block;
         }
     }
+    .modal__close-button{
+        width: 36px;
+        height: 36px;
+        // margin: 50px 65px;
+    }
 
 }
 @media (min-width: 1032px) {
@@ -343,6 +373,11 @@
     }
     .logo__icon {
         width: 275px;
+    }
+    .modal__close-button{
+        width: 40px;
+        height: 40px;
+        // margin: 60px 85px;
     }
 }
 @media (min-width: 1280px) {
@@ -362,6 +397,11 @@
     }
     .logo__icon {
         width: 335px;
+    }
+    .modal__close-button{
+        width: 46px;
+        height: 46px;
+        margin: 70px 100px;
     }
 
 }

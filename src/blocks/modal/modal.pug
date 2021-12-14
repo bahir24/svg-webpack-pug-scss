@@ -1,5 +1,6 @@
 .modal.modal-hide
-    .close
+    button.modal__close-button
+        +icon('close')(class="close__icon")
     form.feedback__form(action="message.php" method="post" name="modalForm")
         h2.modal__text Оставьте заявку, и мы запишем Вас на диагностику в нашем центре.
         .feedback__form-inputs.feedback__form-inputs--margin-right

@@ -39,7 +39,7 @@ var pageObject = {
         return document.querySelector('.modal');
     },
     close(){
-        return this.modal().querySelector('.close');
+        return this.modal().querySelector('.modal__close-button');
     },
     modalForm(){
         return this.modal().querySelector('form');

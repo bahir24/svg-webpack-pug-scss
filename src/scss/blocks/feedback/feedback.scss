@@ -18,7 +18,7 @@
     font-weight: 500;
 }
 .feedback__form{
-    width: 60%;
+    width: 85%;
     text-align: center;
     margin-bottom: 3rem;
 }
@@ -58,6 +58,9 @@
     }
 }
 @media (min-width: 848px) {
+    .feedback__form{
+        width: 60%;
+    }
     .feedback__form-inputs{
         flex-direction: row;
     }
