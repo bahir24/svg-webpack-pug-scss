@@ -7,9 +7,6 @@ const isDevelopment = env === 'development';
 const isProduction = env === 'production';
 const currMode = isDevelopment || isProduction ? env : 'none';
 
-console.log(env);
-console.log(isProduction);
-
 const config = {
     mode: currMode,
     entry: {
@@ -46,7 +43,10 @@ const config = {
                     {
                         loader: "pug-html-loader",
                         options: {
-                            pretty: true,
+                            pretty: isDevelopment,
+                            data: {
+                                ColorsFromFile: FileColors,
+                            }
                         },
                     },
                 ],
@@ -64,13 +64,86 @@ const config = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader'
+                    'sass-loader',
+                    {
+                        loader: "@epegzz/sass-vars-loader",
+                        options: {
+                            syntax: 'scss',
+                            vars: FileColors,
+                        }
+                    }
                 ]
+                    // {
+                    //     loader:,
+
+                        // options: {
+                            // additionalData:"$value: 200px;",
+                            // functions: {
+                            //     "get($keys)": function(keys) {
+                            //       keys = keys.getValue().split(".");
+                            //       let result = sassVars;
+                            //       let i;
+                            //       for (i = 0; i < keys.length; i++) {
+                            //         result = result[keys[i]];
+                            //       }
+                            //       result = sassUtils.castToSass(result);
+                            //       return result;
+                            //     },
+                            //   },
+                                // let scssVars = '';
+                                // console.log(FileColors);
+                                // Object.keys(FileColors).forEach(function(color, index){
+                                //     let newScssVar = "$exampleKey" + index + ":" + color + ";";
+                                //     scssVars += newScssVar;
+                                // });
+
+                            // }
+
+                            // additionalData(){
+                            //     return Object.keys(FileColors.fileColors).map(function(color){
+                            //         return "$exampleKey:" + color;
+                            //         // console.log(index);
+                            //         // stringData += index + ': ' + color + ',';
+                            //         // console.log(stringData);
+                            //     });
+                            //     // stringData += ')';
+                            //     // return stringData;
+                            // },
+                        // },
+                    // },
+                            // additionalData: jsToScss(FileColors),
+                            // prependData() {
+                            //     let colorsString = '$fileColors: (';
+                            //     Object.keys(Colors).forEach(key => {
+                            //         colorsString += key + ': ' + Colors.key + ',';
+                            //     });
+                            //     colorsString += ');'
+                            //     return colorsString;
+                            // }
+                            // exportOnlyLocals: false,
+                            // additionalData: {
+                            //     fileColors: "text here",
+                            // },
+                            // webpackImporter: false,
+                            // data: {
+                                // fileColors: Colors,
+                            // }
+                            // additionalData: "num",
+
+                    //     },
+                    // },
+                // ],
             },
         ]
     },
     devServer: {
         historyApiFallback: true,
+        watchFiles: {
+            paths: ['src/blocks/*', 'src/scss/*'],
+            options: {
+              usePolling: false,
+            },
+          },
         open: true,
         host: 'localhost',
         port: '8080',

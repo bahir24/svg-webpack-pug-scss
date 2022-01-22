@@ -1,23 +1,2 @@
-@import 'scss/mixins.scss';
-@import 'scss/variables.scss';
-@import 'scss/fonts.scss';
 @import 'scss/normalize.scss';
-@import '~@splidejs/splide/dist/css/splide.min.css';
-@import 'scss/layout/container.scss';
-@import 'scss/blocks/header/header.scss';
-@import 'scss/blocks/offers/offers.scss';
-@import 'scss/blocks/calc/calc.scss';
-@import 'scss/blocks/pricelist/pricelist.scss';
-@import 'scss/blocks/slider-stranges/slider-stranges.scss';
-@import 'scss/blocks/slider-photo/slider-photo.scss';
-@import 'scss/blocks/contacts/contacts.scss';
-@import 'scss/blocks/footer/footer.scss';
-@import 'scss/blocks/modal/modal.scss';
-@import 'scss/blocks/feedback/feedback.scss';
-
-.body-blocked{
-.header__bottom{
-    opacity: 0;
-    height: 0;
-}
-}
+@import 'scss/svg.scss';
