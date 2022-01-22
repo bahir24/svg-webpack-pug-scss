@@ -17,7 +17,6 @@ const config = {
         filename: 'app[contenthash].js'
     },
     resolve: {
-        // root: path.resolve('./'),
         alias: {
             'vue$': 'vue/dist/vue.esm.js'
         },
@@ -73,66 +72,6 @@ const config = {
                         }
                     }
                 ]
-                    // {
-                    //     loader:,
-
-                        // options: {
-                            // additionalData:"$value: 200px;",
-                            // functions: {
-                            //     "get($keys)": function(keys) {
-                            //       keys = keys.getValue().split(".");
-                            //       let result = sassVars;
-                            //       let i;
-                            //       for (i = 0; i < keys.length; i++) {
-                            //         result = result[keys[i]];
-                            //       }
-                            //       result = sassUtils.castToSass(result);
-                            //       return result;
-                            //     },
-                            //   },
-                                // let scssVars = '';
-                                // console.log(FileColors);
-                                // Object.keys(FileColors).forEach(function(color, index){
-                                //     let newScssVar = "$exampleKey" + index + ":" + color + ";";
-                                //     scssVars += newScssVar;
-                                // });
-
-                            // }
-
-                            // additionalData(){
-                            //     return Object.keys(FileColors.fileColors).map(function(color){
-                            //         return "$exampleKey:" + color;
-                            //         // console.log(index);
-                            //         // stringData += index + ': ' + color + ',';
-                            //         // console.log(stringData);
-                            //     });
-                            //     // stringData += ')';
-                            //     // return stringData;
-                            // },
-                        // },
-                    // },
-                            // additionalData: jsToScss(FileColors),
-                            // prependData() {
-                            //     let colorsString = '$fileColors: (';
-                            //     Object.keys(Colors).forEach(key => {
-                            //         colorsString += key + ': ' + Colors.key + ',';
-                            //     });
-                            //     colorsString += ');'
-                            //     return colorsString;
-                            // }
-                            // exportOnlyLocals: false,
-                            // additionalData: {
-                            //     fileColors: "text here",
-                            // },
-                            // webpackImporter: false,
-                            // data: {
-                                // fileColors: Colors,
-                            // }
-                            // additionalData: "num",
-
-                    //     },
-                    // },
-                // ],
             },
         ]
     },
