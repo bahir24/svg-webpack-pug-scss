@@ -5,11 +5,17 @@ const { VueLoaderPlugin } = require('vue-loader');
 const env = process.env.NODE_ENV
 const isDevelopment = env === 'development';
 const isProduction = env === 'production';
+const FileColors = require('./src/js/colors.js');
+const loader = require('sass-loader');
+const jsToScss = require("./src/js/jsToCss.js");
+// const mode = development;
 
-console.log(isDevelopment);
-console.log(isProduction);
+
+// console.log(Colors);
+// console.log(isProduction);
 
 const config = {
+    mode: 'none',
     entry: {
         main: './src/app.js',
     },
@@ -45,6 +51,9 @@ const config = {
                         loader: "pug-html-loader",
                         options: {
                             pretty: isDevelopment,
+                            data: {
+                                ColorsFromFile: FileColors,
+                            }
                         },
                     },
                 ],
@@ -62,27 +71,91 @@ const config = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader'
+                    'sass-loader',
+                    {
+                        loader: "@epegzz/sass-vars-loader",
+                        options: {
+                            syntax: 'scss',
+                            vars: FileColors,
+                        }
+                    }
                 ]
+                    // {
+                    //     loader:,
+
+                        // options: {
+                            // additionalData:"$value: 200px;",
+                            // functions: {
+                            //     "get($keys)": function(keys) {
+                            //       keys = keys.getValue().split(".");
+                            //       let result = sassVars;
+                            //       let i;
+                            //       for (i = 0; i < keys.length; i++) {
+                            //         result = result[keys[i]];
+                            //       }
+                            //       result = sassUtils.castToSass(result);
+                            //       return result;
+                            //     },
+                            //   },
+                                // let scssVars = '';
+                                // console.log(FileColors);
+                                // Object.keys(FileColors).forEach(function(color, index){
+                                //     let newScssVar = "$exampleKey" + index + ":" + color + ";";
+                                //     scssVars += newScssVar;
+                                // });
+
+                            // }
+
+                            // additionalData(){
+                            //     return Object.keys(FileColors.fileColors).map(function(color){
+                            //         return "$exampleKey:" + color;
+                            //         // console.log(index);
+                            //         // stringData += index + ': ' + color + ',';
+                            //         // console.log(stringData);
+                            //     });
+                            //     // stringData += ')';
+                            //     // return stringData;
+                            // },
+                        // },
+                    // },
+                            // additionalData: jsToScss(FileColors),
+                            // prependData() {
+                            //     let colorsString = '$fileColors: (';
+                            //     Object.keys(Colors).forEach(key => {
+                            //         colorsString += key + ': ' + Colors.key + ',';
+                            //     });
+                            //     colorsString += ');'
+                            //     return colorsString;
+                            // }
+                            // exportOnlyLocals: false,
+                            // additionalData: {
+                            //     fileColors: "text here",
+                            // },
+                            // webpackImporter: false,
+                            // data: {
+                                // fileColors: Colors,
+                            // }
+                            // additionalData: "num",
+
+                    //     },
+                    // },
+                // ],
             },
         ]
     },
     devServer: {
         historyApiFallback: true,
+        watchFiles: {
+            paths: ['src/blocks/*', 'src/scss/*'],
+            options: {
+              usePolling: false,
+            },
+          },
         open: true,
         host: 'localhost',
         port: '8080',
         hot: true,
     },
-
-    // resolve: {
-
-    // extensions: ['*', '.js', '.vue', '.json']
-    //     alias: {
-    //         'vue': 'vue/dist/vue.js',
-    //         'vue$': 'vue/dist/vue.esm.js'
-    //     },
-    // },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.pug',

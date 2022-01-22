@@ -1,0 +1,68 @@
+@use "sass:math";
+@use "sass:map";
+
+
+$viewBox:500;
+$diagram-width: 800px;
+$diagram-center: $viewBox / 2;
+$stroke-width:25;
+$stroke-offset:7;
+$step: 5;
+$stroke-outline: $stroke-width / 2;
+$circle-radius: $diagram-center - $stroke-outline;
+$circle-size: $stroke-width + $stroke-offset;
+
+$value: 10px;
+
+.diagram{
+    width: $diagram-width;
+}
+.circle{
+    cx:$diagram-center;
+    cy:$diagram-center;
+    fill:none;
+    stroke-width:$stroke-width;
+}
+
+.diagram__wrapper{
+    background: darkmagenta;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@each $name, $color in $colors {
+    $index: index(($colors), ($name $color));
+    $radius: $circle-radius - $circle-size * ($index - 1);
+    $dasharray: math.ceil($radius * 2 * math.$pi);
+    $one-step:$dasharray / 100;
+    .circle--#{$name} {
+        @if ($radius > $circle-size) {
+            r: $radius;
+            stroke: $color;
+            stroke-dasharray: $dasharray;
+            $curr-percent:100;
+            @while $curr-percent >= 0{
+                &.percent-#{$curr-percent}{
+                    stroke-dashoffset: $dasharray - math.ceil($one-step * $curr-percent);
+                }
+                $curr-percent:$curr-percent - $step;
+            }
+            &:hover{
+                filter: drop-shadow(1px 1px 2px ($color));
+                animation: rounds-#{$name} 1s;
+            }
+        } @else {
+            display: none;
+        }
+    }
+    @keyframes rounds-#{$name} {
+        0% {stroke-dasharray: $dasharray;}
+        35% {stroke-dasharray: $dasharray - $one-step;}
+        75% {stroke-dasharray: $dasharray + $one-step;}
+        100% {stroke-dasharray: $dasharray;}
+    }
+}
+
