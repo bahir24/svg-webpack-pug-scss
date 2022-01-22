@@ -1,4 +1,4 @@
-import FileColors from './js/colors.js';
+// import FileColors from './js/colors.js';
 import './main.scss';
 
 import Vue from 'vue';

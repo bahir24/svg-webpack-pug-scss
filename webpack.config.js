@@ -6,6 +6,7 @@ const env = process.env.NODE_ENV
 const isDevelopment = env === 'development';
 const isProduction = env === 'production';
 const currMode = isDevelopment || isProduction ? env : 'none';
+const FileColors = require('./src/js/colors');
 
 const config = {
     mode: currMode,
